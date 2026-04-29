@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/campusbridge/templates/Base.html" afterDir="false" />
+    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/Base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +60,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -113,11 +114,26 @@
       <updated>1776982232317</updated>
       <workItem from="1776982233313" duration="407000" />
       <workItem from="1777316957467" duration="238000" />
-      <workItem from="1777471219490" duration="5915000" />
+      <workItem from="1777471219490" duration="7560000" />
+      <workItem from="1777483703859" duration="2793000" />
     </task>
+    <task id="LOCAL-00001" summary="update home.html">
+      <option name="closed" value="true" />
+      <created>1777477432126</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777477432126</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Completed authentication and role system" />
+    <MESSAGE value="update home.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="update home.html" />
   </component>
 </project>
