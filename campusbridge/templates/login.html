@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2> Login</h2>
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    Invalid username or password
+</div>
+{% endif %}
 <form method="POST">
 {% csrf_token %}
 {{ form.as_p }}
