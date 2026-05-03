@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block content %}
+<h2> Anonymous Requests</h2>
+{% for r in requests %}
+    <div class ="card p-3 mt-2">
+    <h5> {{ r.title}}</h5>
+    <p>{{ r.description }}</p>
+    {% if r.anonymous_profile %}
+        <small>Anonymous ID:{{ r.anonymous_profile.anon_id }}</small>
+    {% else %}
+    <small> No Anonymous </small>
+{% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}
