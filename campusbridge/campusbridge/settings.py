@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'campusbridge',
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'support',
     'appointments',
 ]
