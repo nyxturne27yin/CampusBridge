@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+{% block content %}
+<h2> My Request</h2>
+{% for r in requests %}
+    <div class ="card p-3 mt-2">
+    <h5> {{ r.title}}</h5>
+    <p>{{ r.description }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
