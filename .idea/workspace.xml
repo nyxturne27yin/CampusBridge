@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="messaging\models.py update">
-      <change afterPath="$PROJECT_DIR$/campusbridge/messaging/urls.py" afterDir="false" />
+    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="url.py(campusbridge,messaging),views.py messaging">
+      <change afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -130,7 +129,7 @@
       <workItem from="1777644263372" duration="87000" />
       <workItem from="1777644483250" duration="534000" />
       <workItem from="1777645044952" duration="1599000" />
-      <workItem from="1778174180568" duration="4849000" />
+      <workItem from="1778174180568" duration="7404000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />
@@ -164,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778174686203</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="url.py(campusbridge,messaging),views.py messaging">
+      <option name="closed" value="true" />
+      <created>1778181924736</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778181924736</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,17 +182,7 @@
     <MESSAGE value="update home.html" />
     <MESSAGE value="update home.html and base html" />
     <MESSAGE value="messaging\models.py update" />
-    <option name="LAST_COMMIT_MESSAGE" value="messaging\models.py update" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/campusbridge/messaging/views.py</url>
-          <line>21</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="url.py(campusbridge,messaging),views.py messaging" />
+    <option name="LAST_COMMIT_MESSAGE" value="url.py(campusbridge,messaging),views.py messaging" />
   </component>
 </project>

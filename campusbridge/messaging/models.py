@@ -17,7 +17,7 @@ class Message(models.Model):
                      ('counselor','Counselor')
                      ]
 
-        Conversation=models.ForeignKey(Conversation,on_delete=models.CASCADE)
+        conversation=models.ForeignKey(Conversation,on_delete=models.CASCADE)
         sender_type=models.CharField(max_length=20,choices=SENDER_TYPE)
         text=models.TextField()
         timestamp=models.DateTimeField(auto_now_add=True)
