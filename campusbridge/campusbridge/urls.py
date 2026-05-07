@@ -29,6 +29,6 @@ urlpatterns = [
     path('dashboard/student/',student_dashboard),
   path('dashboard/counselor/',counselor_dashboard),
 path('dashboard/staff/',staff_dashboard),
-   path('support/',include('support.urls'))
-
+   path('support/',include('support.urls')),
+path('messaging/',include('messaging.urls'))
 ]
