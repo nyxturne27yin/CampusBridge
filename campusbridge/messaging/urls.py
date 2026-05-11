@@ -1,4 +1,6 @@
 from django.urls import path
-from .views import chat,send_message
-urlpatterns=[path('chat/<int:convo_id>/',chat,name='chat'),
-             path('send/<int:convo_id>/',send_message,name='send_message')]
+from . import views
+urlpatterns=[path('chat/<int:convo_id>/',views.chat,name='chat'),
+             path('send/<int:convo_id>/',views.send_message,name='send_message'),
+             path('', views.conversation_list, name='conversation_list'),
+             path('start/<int:counselor_id>/', views.start_conversation, name='start_conversation'),]

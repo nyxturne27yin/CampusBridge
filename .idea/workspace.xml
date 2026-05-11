@@ -4,21 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="url.py(campusbridge,messaging),views.py messaging">
-      <change afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" afterDir="false" />
+    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html">
+      <change afterPath="$PROJECT_DIR$/campusbridge/appointments/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01-May-26_10_44_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01-May-26_10_44_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/staff.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/student.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -34,7 +51,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/nyxturne27yin/CampusBridge.git&quot;,
-    &quot;accountId&quot;: &quot;7e005c3b-b5d8-4f07-b000-ef6308566ab3&quot;
+    &quot;accountId&quot;: &quot;0853cfc3-9c92-4c14-9918-2e9fe107f926&quot;
   }
 }</component>
   <component name="McpProjectServerCommands">
@@ -47,34 +64,34 @@
 }</component>
   <component name="ProjectId" id="3CmEEG5lxV88aTthDLicMyIZQWE" />
   <component name="ProjectLevelVcsManager">
-    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ABC\PycharmProjects\PythonProject\CampusBridge\campusbridge\static" />
@@ -129,7 +146,9 @@
       <workItem from="1777644263372" duration="87000" />
       <workItem from="1777644483250" duration="534000" />
       <workItem from="1777645044952" duration="1599000" />
-      <workItem from="1778174180568" duration="7404000" />
+      <workItem from="1778242286715" duration="699000" />
+      <workItem from="1778270193200" duration="356000" />
+      <workItem from="1778473176603" duration="4336000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />
@@ -155,23 +174,7 @@
       <option name="project" value="LOCAL" />
       <updated>1777486679046</updated>
     </task>
-    <task id="LOCAL-00004" summary="messaging\models.py update">
-      <option name="closed" value="true" />
-      <created>1778174686203</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1778174686203</updated>
-    </task>
-    <task id="LOCAL-00005" summary="url.py(campusbridge,messaging),views.py messaging">
-      <option name="closed" value="true" />
-      <created>1778181924736</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1778181924736</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,8 +184,6 @@
     <MESSAGE value="Completed authentication and role system" />
     <MESSAGE value="update home.html" />
     <MESSAGE value="update home.html and base html" />
-    <MESSAGE value="messaging\models.py update" />
-    <MESSAGE value="url.py(campusbridge,messaging),views.py messaging" />
-    <option name="LAST_COMMIT_MESSAGE" value="url.py(campusbridge,messaging),views.py messaging" />
+    <option name="LAST_COMMIT_MESSAGE" value="update home.html and base html" />
   </component>
 </project>

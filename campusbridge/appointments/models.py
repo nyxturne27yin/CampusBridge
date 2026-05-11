@@ -1,3 +1,27 @@
 from django.db import models
+from accounts.models import User
+from support.models import AnonymousProfile
 
-# Create your models here.
+class CounselorAvailability(models.Model):
+    counselor=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    date=models.DateField()
+    time_slot=models.TimeField()
+    is_booked=models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.counselor.username}-{self.date} {self.time_slot}"
+
+
+
+class Appointment(models.Model):
+    STATUS_CHOICE=[('pending','Pending'),
+                   ('rejected','Rejected'),
+                   ('approved','Approved')]
+
+    anonymous_profile=models.ForeignKey(AnonymousProfile,on_delete=models.CASCADE)
+    counselor = models.ForeignKey(User, on_delete=models.CASCADE)
+    slot=models.ForeignKey(CounselorAvailability,on_delete=models.CASCADE)
+    status=models.CharField(max_length=20,choices=STATUS_CHOICE,default='pending')
+    created_at=models.DateTimeField(auto_now_add=True)
+

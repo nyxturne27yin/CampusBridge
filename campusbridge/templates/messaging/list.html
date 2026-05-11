@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Start a Conversation</h2>
+
+
+{% for c in counselors %}
+<div class="card p-2 mt-2">
+    <p>Counselor: {{ c.username }}</p>
+
+    <a href="{% url 'start_conversation' c.id %}" class="btn btn-primary btn-sm">
+        Start Chat
+    </a>
+</div>
+{% endfor %}
+
+<hr>
+
+<h3>Your Conversations</h3>
+
+{% for convo in conversations %}
+<div class="card p-2 mt-2">
+    <p>Chat #{{ convo.id }}</p>
+
+    <a href="{% url 'chat' convo.id %}" class="btn btn-success btn-sm">
+        Open Chat
+    </a>
+</div>
+{% empty %}
+<p>No active conversations yet.</p>
+{% endfor %}
+
+{% endblock %}
