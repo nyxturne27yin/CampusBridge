@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Appointments</h2>
+{% for a in slots %}
+<div class=" card p-2 mt-2">
+<p> {{ a.anonymous_profile.id}}|{{ a.slot.date  }}{{ a.slot.time_slot }}</p>
+
+<a href="{% url 'update_appointment' a.id 'approved' %}"
+
+class="btn btn-success btn-sm"> Approve</a>
+<a href="{% url 'update_appointment' a.id 'approved' %}"
+
+class="btn btn-success btn-sm"> Reject</a>
+
+</div>
+
+    {%  endfor %}
+{% endblock %}
