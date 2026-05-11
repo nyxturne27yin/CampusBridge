@@ -31,5 +31,5 @@ urlpatterns = [
     path('dashboard/staff/', staff_dashboard),
     path('support/', include('support.urls')),
     path('messaging/', include('messaging.urls')),
-    path('messaging/', include('appointments.urls')),
+    path('appointments/', include('appointments.urls')),
 ]
