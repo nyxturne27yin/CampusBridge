@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="Appointment System">
+    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html">
+      <change afterPath="$PROJECT_DIR$/campusbridge/templates/appointment/create_slot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/campusbridge/templates/appointment/manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/campusbridge/templates/appointment/slot.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,6 +52,7 @@
 }</component>
   <component name="ProjectId" id="3CmEEG5lxV88aTthDLicMyIZQWE" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -134,8 +137,7 @@
       <workItem from="1777645044952" duration="1599000" />
       <workItem from="1778242286715" duration="699000" />
       <workItem from="1778270193200" duration="356000" />
-      <workItem from="1778473176603" duration="7128000" />
-      <workItem from="1778481821265" duration="1513000" />
+      <workItem from="1778473176603" duration="4336000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />
@@ -161,15 +163,7 @@
       <option name="project" value="LOCAL" />
       <updated>1777486679046</updated>
     </task>
-    <task id="LOCAL-00004" summary="Appointment System">
-      <option name="closed" value="true" />
-      <created>1778478026790</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1778478026790</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,7 +173,6 @@
     <MESSAGE value="Completed authentication and role system" />
     <MESSAGE value="update home.html" />
     <MESSAGE value="update home.html and base html" />
-    <MESSAGE value="Appointment System" />
-    <option name="LAST_COMMIT_MESSAGE" value="Appointment System" />
+    <option name="LAST_COMMIT_MESSAGE" value="update home.html and base html" />
   </component>
 </project>
