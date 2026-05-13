@@ -7,7 +7,15 @@
 <div class='card p-3'>
     <p> Manage Availability</p>
 
+<form method="POST">
+    {% csrf_token %}
 
+    <input type="date" name="date" class="form-control mt-2">
+
+    <input type="time" name="time_slot" class="form-control mt-2">
+
+    <button class="btn btn-dark mt-2">Create Slot</button>
+</form>
 </div>
 <div class='card p-3'>
     <p> View appointment</p>
@@ -17,4 +25,5 @@
 <a href="{% url 'conversation_list' %}" class="btn btn-primary">
     Messages
 </a>
+
 {% endblock %}

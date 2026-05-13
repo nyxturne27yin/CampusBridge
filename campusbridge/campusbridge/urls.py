@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from accounts.views import home, register_view, login_view, logout_view, dashboard_redirect, student_dashboard, \
     counselor_dashboard, staff_dashboard
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +34,6 @@ urlpatterns = [
     path('support/', include('support.urls')),
     path('messaging/', include('messaging.urls')),
     path('appointments/', include('appointments.urls')),
+
+    path('', include('accounts.urls')),
 ]

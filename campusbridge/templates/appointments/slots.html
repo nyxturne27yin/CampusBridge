@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Available Slots</h3>
+
+{% for s in slots %}
+<div class="card shadow-sm p-3 mt-3">
+
+       <span class="badge bg-primary mb-2">
+        {{ s.counselor.username }}
+    </span>
+
+    <div class="text-muted">
+        {{ s.date }} | {{ s.time_slot }}
+    </div>
+
+    <a href="{% url 'book_slot' s.id %}"
+       class="btn btn-success btn-sm mt-2">
+        Book Appointment
+    </a>
+
+</div>
+
+{% empty %}
+<p class="text-muted text-center mt-3">No slots available</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,6 +1,45 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h2> Welcome to Campus-Bridge</h2>
+
+<div class="container mt-5">
+
+
+  <div class="card shadow-sm p-4 text-center"
+       style="background: linear-gradient(135deg, #F7F9FC, #EAF1FF); border-radius: 16px;">
+
+    <h1 style="color:#2F6FED;">You are not alone</h1>
+
+    <p class="text-muted mt-2">
+      A safe, confidential campus support system for students and staff.
+    </p>
+
+    <p class="mt-3">
+      Our vision is to provide accessible counseling, anonymous support, and real-time communication between students and counselors.
+    </p>
+
+  </div>
+
+
+  <div class="row mt-4">
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-4 text-center">
+        <h4>Login</h4>
+        <p class="text-muted">Access your dashboard</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm p-4 text-center">
+        <h4>Register</h4>
+        <p class="text-muted">Create your account</p>
+        <a href="{% url 'register' %}" class="btn btn-outline-primary">Register</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
 {% endblock %}

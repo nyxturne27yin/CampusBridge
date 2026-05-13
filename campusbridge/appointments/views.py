@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import CounselorAvailability, Appointment
 from support.models import AnonymousProfile
+from django.core.mail import send_mail
 
 
 @login_required
@@ -23,7 +24,6 @@ def view_slots(request):
     return render(request, 'appointments/slots.html', {
         'slots': slots
     })
-
 
 @login_required
 def book_slot(request, slot_id):
@@ -52,10 +52,7 @@ def book_slot(request, slot_id):
 
 @login_required
 def manage_appointments(request):
-
-    appointments = Appointment.objects.filter(
-        counselor=request.user
-    )
+    appointments = Appointment.objects.filter(counselor=request.user)
 
     return render(request, 'appointments/manage.html', {
         'appointments': appointments
@@ -75,4 +72,15 @@ def update_appointment(request, app_id, status):
         app.status = status
         app.save()
 
+        send_mail(
+            "Appointment Status Update",
+            f"Your appointments is now {status}",
+            "system@campusbridge.com",
+            [app.anonymous_profile.user.email],
+            fail_silently=True
+        )
+
     return redirect('manage_appointments')
+
+def appointments_home(request):
+    return redirect('view_slots')

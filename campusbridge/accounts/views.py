@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import AuthenticationForm
+from appointments.models import Appointment, CounselorAvailability
+from messaging.models import Conversation
+from support.models import SupportRequest,AnonymousProfile
 # Create your views here.
 
 def home(request):
@@ -35,32 +38,65 @@ def logout_view(request):
 @login_required
 def dashboard_redirect(request):
     user=request.user
-
-    if user.role=="student":
-        return redirect('/dashboard/student/')
-    elif user.role=="staff":
-        return redirect('/dashboard/staff/')
-    elif user.role=="counselor":
-        return redirect('/dashboard/counselor/')
+    if user.role == "student":
+        return redirect('student_dashboard')
+    elif user.role == "staff":
+        return redirect('staff_dashboard')
+    elif user.role == "counselor":
+        return redirect('counselor_dashboard')
+    print("LOGGED IN USER:", request.user)
+    print("ROLE:", request.user.role)
 
     return redirect('/')
 
 
-
+@login_required
 def student_dashboard(request):
     if request.user.role!="student":
         return HttpResponseForbidden("Access Denied")
-    return render(request,'dashboards/student.html')
+    anon, _ = AnonymousProfile.objects.get_or_create(user=request.user)
 
+    support_requests = SupportRequest.objects.filter(anonymous_profile=anon)
+    conversations = Conversation.objects.filter(anonymous_profile=anon)
+    appointments = Appointment.objects.filter(anonymous_profile=anon)
+    slots = CounselorAvailability.objects.filter(is_booked=False)
+    return render(request,'dashboards/student.html', {
+    "support_requests": support_requests,
+    "conversations": conversations,
+    "appointments": appointments,
+    "slots": slots,
+})
 
+@login_required
 def counselor_dashboard(request):
     if request.user.role != "counselor":
         return HttpResponseForbidden("Access Denied")
-    return render(request,'dashboards/counselor.html')
 
+    support_requests = SupportRequest.objects.all().order_by('-id')
+    conversations = Conversation.objects.filter(counselor=request.user)
+    appointments = Appointment.objects.filter(counselor=request.user)
+    slots = CounselorAvailability.objects.filter(counselor=request.user)
 
+    return render(request,'dashboards/counselor.html', {
+        "support_requests": support_requests,
+        "conversations": conversations,
+        "appointments": appointments,
+        "slots": slots,
+    })
+
+@login_required
 def staff_dashboard(request):
     if request.user.role != "staff":
         return HttpResponseForbidden("Access Denied")
-    return render(request,'dashboards/staff.html')
+    anon, _ = AnonymousProfile.objects.get_or_create(user=request.user)
 
+    support_requests = SupportRequest.objects.filter(anonymous_profile=anon)
+    conversations = Conversation.objects.filter(anonymous_profile=anon)
+    appointments = Appointment.objects.filter(anonymous_profile=anon)
+    slots = CounselorAvailability.objects.filter(is_booked=False)
+    return render(request,'dashboards/staff.html', {
+        "support_requests": support_requests,
+        "conversations": conversations,
+        "appointments": appointments,
+        "slots": slots,
+    })

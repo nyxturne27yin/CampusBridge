@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import create_slot,view_slots,book_slot,manage_appointments,update_appointment
+from .views import (
+    create_slot,
+    view_slots,
+    book_slot,
+    manage_appointments,
+    update_appointment
+)
 
 urlpatterns = [
     path('create/', create_slot, name='create_slot'),
