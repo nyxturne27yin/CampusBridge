@@ -1,27 +1,81 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2> Counselor Dashboard</h2>
-<div class='card p-3'>
-    <p> View anonymous Request</p>
-</div>
+
+
+<h3>Counselor Dashboard </h3>
+
+    <div class="card shadow-sm p-3 mt-3">
+    <h5> My Support Request</h5>
+
+    {% for s in support_request %}
+    <div class="card p-2 mt-2">
+    <b>{{ s.title }}</b>
+        <p>{{s.description }}</p>
+       <small> ANON ID:{{ s.anonymous_profile.anon_id }}</small>
+
+    </div>
+    {% empty %}
+    <p class="text-muted">No  request</p>
+    {% endfor %}
+    </div>
+    <!--Messaging-->
+
+    <div class="card shadow-sm p-3 mt-3">
+    <h5> Conversation</h5>
+    {% for c in conversation %}
+    <div class="card p-2 mt-2">
+    Conversation #{{ c.id }}
+    <a href="{% url 'chat' c.id %}" class="btn btn-sm btn-primary">Open</a>
+    </div>
+
+    {% empty %}
+    <p class="text-muted">No Conversation</p>
+    {% endfor %}
+    </div>
+
+<div class="card shadow-sm p-3 mt-3">
+<h5> Appointments</h5>
+
+
+    {% for a in appointments %}
+    <div class="card p-2 mt-2">
+  Status:{{a.status}}
+    {% if a.status == "pending" %}
+    <a href="{%  url 'update_appointment' a.id 'approved' %}"
+    class="btn btn-success btn-sm">
+        Approve
+    </a>
+        <a href="{%  url 'update_appointment' a.id 'rejected' %}"
+    class="btn btn-danger btn-sm">Reject
+        </a>
+    {% endif %}
+    </div>
+    {% empty %}
+    <p class="text-muted">No appointments</p>
+    {% endfor %}
+    </div>
+
+
+<div class="card shadow-sm p-3 mt-3">
+    <h5> Availability Slots</h5>
+<a href="{% url 'create_slot' %}" class="btn btn-dark btn-sm mb-2">Create Slot</a>
+    {% for s in slots %}
+    <div class="card p-2 mt-2">
+    {{ s.date }}-{{ s.time_slot }}
+
+    </div>
+
+    {% empty %}
+    <p class="text-muted">No slots Available</p>
+    {% endfor %}
+    </div>
+
+
+
+
 <div class='card p-3'>
     <p> Manage Availability</p>
-
-<form method="POST">
-    {% csrf_token %}
-
-    <input type="date" name="date" class="form-control mt-2">
-
-    <input type="time" name="time_slot" class="form-control mt-2">
-
-    <button class="btn btn-dark mt-2">Create Slot</button>
-</form>
 </div>
-<div class='card p-3'>
-    <p> View appointment</p>
-
-</div>
-
 <a href="{% url 'conversation_list' %}" class="btn btn-primary">
     Messages
 </a>

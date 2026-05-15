@@ -1,24 +1,87 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2> Student Dashboard</h2>
-<div class='card p-3'>
-    <p> Submit Support Request</p>
+
+ <h3>Student Dashboard </h3>
+    <div class="card shadow-sm p-3 mt-3">
+    <h5> My Support Request</h5>
+    <a href="{% url 'create_request' %}" class="btn btn-primary btn-sm">New Request</a>
+    {% for s in support_request %}
+    <div class="card p-2 mt-2">
+    <b>{{ s.title }}</b>
+        <p>{{s.description }}</p>
+        <p>Status:{{ s.status }}</p>
+
+    </div>
+    {% empty %}
+    <p class="text-muted">No  request</p>
+    {% endfor %}
+    </div>
+    <!--Messaging-->
+
+    <div class="card shadow-sm p-3 mt-3">
+    <h5> Messages</h5>
+    {% for c in conversation %}
+    <div class="card p-2 mt-2">
+    Conversation #{{ c.id }}
+    <a href="{% url 'chat' c.id %}" class="btn btn-sm btn-primary">Open</a>
+    </div>
+
+    {% empty %}
+    <p class="text-muted">No Conversation</p>
+    {% endfor %}
+    </div>
+
+<div class="card shadow-sm p-3 mt-3">
+<h5> Appointments</h5>
+<a href="{% url 'view_slots' %}" class="btn btn-success btn-sm mb-2">Book Slot</a>
+
+    {% for a in appointments %}
+    <div class="card p-2 mt-2">
+        <p><b> Date</b>{{ a.slot.date }}</p>
+     <p><b> Time</b> {{ a.slot.time_slot }} </p><p><b> status</b> {{ a.status }}</p>
+    </div>
+    {% empty %}
+    <p class="text-muted">No appointments</p>
+    {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card shadow-sm p-3 mt-3">
+<h5> Quick Action</h5>
+
+
+<div class='card p-2 mt-2'>
+<a href="{% url 'create_request' %}">
+  Create Support Request
+</a>
 
 </div>
-<div class='card p-3'>
-    <p> View Appointment</p>
+<div class="card p-2 mt-2">
+<a href="#">  Track Submitted Requests</a>
 
 </div>
- <a href="{% url 'conversation_list' %}" class="btn btn-primary">
+        <div class="card p-2 mt-2">
+<a href="{% url 'conversation_list' %}" class="btn btn-primary">
     Messages
 </a>
-    <div class="card shadow-sm p-3 mt-3">
-
-    <h5>Book Appointment</h5>
-
-    <a href="{% url 'view_slots' %}" class="btn btn-primary btn-sm">
-        View Available Slots
-    </a>
-
+            </div>
 </div>
 {% endblock %}

@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html">
-      <change afterPath="$PROJECT_DIR$/campusbridge/accounts/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/campusbridge/templates/navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/campusbridge/templates/password_reset_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointment/create_slot.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/create_slot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointment/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/manage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointment/slot.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/staff.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +35,12 @@
     &quot;assignee&quot;: &quot;tanvin-nahar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/nyxturne27yin/CampusBridge.git&quot;,
-    &quot;accountId&quot;: &quot;0853cfc3-9c92-4c14-9918-2e9fe107f926&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nyxturne27yin/CampusBridge.git",
+    "accountId": "7e005c3b-b5d8-4f07-b000-ef6308566ab3"
   }
-}</component>
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -152,6 +138,7 @@
       <workItem from="1778270193200" duration="356000" />
       <workItem from="1778473176603" duration="4336000" />
       <workItem from="1778689853781" duration="11030000" />
+      <workItem from="1778843273572" duration="4586000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />
