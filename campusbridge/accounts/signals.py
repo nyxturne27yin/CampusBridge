@@ -5,7 +5,7 @@ from support.models import AnonymousProfile
 
 User=get_user_model()
 
-@receiver(post_save,sender=User)
-def create_anon_profile(sender,instance,created,**kwargs):
+@receiver(post_save, sender=User)
+def create_anonymous_profile(sender, instance, created, **kwargs):
     if created:
-        AnonymousProfile.objects.get_or_create(user=instance)
+        AnonymousProfile.objects.create(user=instance)

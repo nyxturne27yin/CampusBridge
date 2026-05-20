@@ -9,8 +9,8 @@
     {% endfor %}
 <form method="POST" action="{% url 'send_message' convo.id %}">
     {% csrf_token %}
-    <input  type="text" name="text"  class="form-control">
-    <button class="btn btn-success mt-2"> Send
+   <input type="text" name="text">
+    <button type="submit">Send
 </button>
 </form>
 {% endblock %}

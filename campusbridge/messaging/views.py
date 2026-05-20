@@ -8,35 +8,44 @@ from accounts.models import User
 # Create your views here.
 @login_required
 def chat(request, convo_id):
-    convo = Conversation.objects.get(id=convo_id)
-    messages = Message.objects.filter(conversation=convo)
+    convo = get_object_or_404(Conversation, id=convo_id)
+
+    # SECURITY CHECK
+    if convo.anonymous_profile != request.user.anonymousprofile and convo.counselor != request.user:
+        return HttpResponseForbidden("Not allowed")
+
+    messages = Message.objects.filter(conversation=convo).order_by("timestamp")
 
     return render(request, 'messaging/chat.html', {
         'messages': messages,
         'convo': convo
     })
 
-
 @login_required
-def send_message(request,convo_id):
-     convo=Conversation.objects.get(id=convo_id)
-     if request.method=='POST':
-         Message.objects.create(
-             conversation=convo,
-             sender_type="student",
-             text=request.POST.get('text')
-         )
+def send_message(request, convo_id):
+    convo = get_object_or_404(Conversation, id=convo_id)
 
-     return redirect('chat',convo_id=convo.id)
+    if request.method == 'POST':
 
+        sender = "counselor" if request.user.role == "counselor" else "student"
+
+        Message.objects.create(
+            conversation=convo,
+            sender_type=sender,
+            text=request.POST.get('text')
+        )
+
+    return redirect('chat', convo_id=convo.id)
 
 @login_required
 def conversation_list(request):
-    counselors = User.objects.filter(is_staff=True)  # adjust role logic
+    profile = request.user.anonymousprofile
+
+    counselors = User.objects.filter(role="counselor")
 
     conversations = Conversation.objects.filter(
-        anonymous_profile=request.user.anonymousprofile
-    )
+        anonymous_profile=profile
+    ).select_related("counselor")
 
     return render(request, 'messaging/list.html', {
         'counselors': counselors,

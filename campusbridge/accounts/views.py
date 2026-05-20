@@ -14,14 +14,17 @@ def home(request):
 
 def register_view(request):
     form = RegisterForm(request.POST or None)
-    if request.method=="POST":
+
+    if request.method == "POST":
         if form.is_valid():
-            user=form.save()
-            login(request,user)
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data["password"])
+            user.save()
+
+            login(request, user)
             return redirect('dashboard_redirect')
 
-    return render(request,'register.html',{'form':form})
-
+    return render(request, 'register.html', {'form': form})
 def login_view(request):
     form=AuthenticationForm(request,data=request.POST or None)
     if request.method=="POST":
@@ -54,7 +57,7 @@ def dashboard_redirect(request):
 def student_dashboard(request):
     if request.user.role!="student":
         return HttpResponseForbidden("Access Denied")
-    anon, _ = AnonymousProfile.objects.get_or_create(user=request.user)
+    anon = request.user.anonymousprofile
 
     support_requests = SupportRequest.objects.filter(anonymous_profile=anon)
     conversations = Conversation.objects.filter(anonymous_profile=anon)
@@ -88,7 +91,8 @@ def counselor_dashboard(request):
 def staff_dashboard(request):
     if request.user.role != "staff":
         return HttpResponseForbidden("Access Denied")
-    anon, _ = AnonymousProfile.objects.get_or_create(user=request.user)
+    anon= request.user.anonymousprofile
+
 
     support_requests = SupportRequest.objects.filter(anonymous_profile=anon)
     conversations = Conversation.objects.filter(anonymous_profile=anon)
