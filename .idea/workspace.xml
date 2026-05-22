@@ -4,22 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="UI Test3">
+    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="Campusbridge Final">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +140,7 @@
       <workItem from="1778689853781" duration="11030000" />
       <workItem from="1778843273572" duration="4586000" />
       <workItem from="1779360833604" duration="40050000" />
-      <workItem from="1779448023031" duration="8123000" />
+      <workItem from="1779448023031" duration="9477000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />
@@ -204,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779461209462</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Campusbridge Final">
+      <option name="closed" value="true" />
+      <created>1779466747661</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1779466747661</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +211,7 @@
     <MESSAGE value="UI Test1" />
     <MESSAGE value="UI Test2" />
     <MESSAGE value="UI Test3" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI Test3" />
+    <MESSAGE value="Campusbridge Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Campusbridge Final" />
   </component>
 </project>
