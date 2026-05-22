@@ -8,6 +8,5 @@ urlpatterns=[path('chat/<int:convo_id>/',views.chat,name='chat'),
              path("inbox/", views.counselor_inbox, name="counselor_inbox"),
              path("student/inbox/", views.student_inbox, name="student_inbox"),
 
-             path('delete/<int:conversation_id>/', views.delete_conversation, name='delete_conversation'),
-
+             path("delete/<int:conversation_id>/", views.delete_conversation, name="delete_conversation")
              ]

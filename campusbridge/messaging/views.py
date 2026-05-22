@@ -83,10 +83,12 @@ def student_inbox(request):
     })
 
 
+@login_required
 def delete_conversation(request, conversation_id):
     convo = get_object_or_404(Conversation, id=conversation_id)
 
-    if request.user in [convo.student, convo.counselor]:
-        convo.delete()
+    if request.user != convo.counselor and request.user != convo.anonymous_profile.user:
+        return HttpResponseForbidden("Not allowed")
 
-    return redirect('counselor_dashboard')
+    convo.delete()
+    return redirect('conversation_list')
