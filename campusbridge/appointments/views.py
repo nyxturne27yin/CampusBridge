@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from messaging.models import Conversation
 from datetime import datetime, date, timedelta, time
-
+from django.http import HttpResponseForbidden
 from accounts.models import User
 from .models import CounselorAvailability, Notification, Appointment
 from support.models import AnonymousProfile
@@ -122,7 +122,10 @@ ALLOWED_STATUS = ["pending", "approved", "rejected"]
 @login_required
 def update_appointment(request, app_id, status):
 
-    if status not in ["pending", "approved", "rejected"]:
+    if request.user.role != "counselor":
+        return HttpResponseForbidden("Only counselors can update")
+
+    if status not in ALLOWED_STATUS:
         messages.error(request, "Invalid status")
         return redirect('manage_appointments')
 
@@ -141,30 +144,40 @@ def update_appointment(request, app_id, status):
             counselor=app.counselor
         )
 
-    send_mail(
-        "Appointment Status Update",
-        f"Your appointment is now {status}",
-        "system@campusbridge.com",
-        [app.anonymous_profile.user.email],
-        fail_silently=True
+    Notification.objects.create(
+        user=app.anonymous_profile.user,
+        message=f"Your appointment is {status}"
     )
 
-    messages.success(request, "Status updated successfully")
     return redirect('manage_appointments')
 @login_required
-def counselor_notifications(request):
+def counselor_dashboard(request):
+    if request.user.role != "counselor":
+        return HttpResponseForbidden("Access Denied")
+
+    # appointments for counselor
+    appointments = Appointment.objects.filter(
+        counselor=request.user
+    ).select_related("anonymous_profile", "slot")
+
+    # conversations
+    conversations = Conversation.objects.filter(
+        counselor=request.user
+    )
+
+    # available slots
+    slots = CounselorAvailability.objects.filter(
+        counselor=request.user
+    ).order_by("date", "time_slot")
+
+    # notifications
     notifications = Notification.objects.filter(
         user=request.user
-    ).order_by("-created_at")
+    ).order_by("-created_at")[:10]
 
-    return render(request, "appointments/notifications.html", {
-        "notifications": notifications
+    return render(request, "dashboards/counselor.html", {
+        "appointments": appointments,
+        "conversations": conversations,
+        "slots": slots,
+        "notifications": notifications,
     })
-
-
-@login_required
-def counselor_dashboard(request):
-    if request.user.role == "counselor":
-        generate_slots_for_counselor(request.user)
-
-    return render(request, "dashboard/counselor.html")

@@ -14,5 +14,5 @@ urlpatterns = [
     path('book/<int:slot_id>/', book_slot, name='book_slot'),
     path('manage/', manage_appointments, name='manage_appointments'),
     path('update/<int:app_id>/<str:status>/', update_appointment, name='update_appointment'),
-    path("notifications/", views.counselor_notifications, name="counselor_notifications"),
+
 ]

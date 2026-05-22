@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
- <h3> Staff Dashboard </h3>
+ <h3>Staff Dashboard </h3>
     <div class="card shadow-sm p-3 mt-3">
     <h5> My Support Request</h5>
     <a href="{% url 'create_request' %}" class="btn btn-primary btn-sm">New Request</a>
@@ -33,21 +33,36 @@
 
 <div class="card shadow-sm p-3 mt-3">
 <h5> Appointments</h5>
-<a href="{% url 'view_slots' %}"
-   class="btn btn-success btn-sm mb-2">
-    Book Slot
-</a>
+<a href="{% url 'view_slots' %}" class="btn btn-success btn-sm mb-2">Book Slot</a>
 
     {% for a in appointments %}
     <div class="card p-2 mt-2">
-   {{ a.slot.date }} - {{a.status}}
+        <p><b> Date</b>{{ a.slot.date }}</p>
+     <p><b> Time</b> {{ a.slot.time_slot }} </p><p><b> status</b> {{ a.status }}</p>
     </div>
     {% empty %}
     <p class="text-muted">No appointments</p>
     {% endfor %}
     </div>
 
-<!--Quick Action-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="card shadow-sm p-3 mt-3">
 <h5> Quick Action</h5>

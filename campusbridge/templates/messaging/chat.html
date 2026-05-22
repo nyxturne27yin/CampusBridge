@@ -8,13 +8,13 @@
     display: flex;
     flex-direction: column;
     height: 80vh;
-    border: 1px solid #ddd;
-    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
     overflow: hidden;
-    background: #f3f4f6;
+    background: #f9fafb;
 }
 
-/* message container */
+/* chat area */
 .chat-box {
     flex: 1;
     overflow-y: auto;
@@ -26,24 +26,25 @@
 
 /* base message */
 .msg {
-    max-width: 75%;
+    max-width: 70%;
     padding: 12px 16px;
     border-radius: 18px;
-    font-size: 16px;   /* BIGGER FONT */
+    font-size: 16px;
     line-height: 1.5;
     word-wrap: break-word;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: relative;
 }
 
-/* SENT MESSAGE (you) */
+/* SENT (RIGHT SIDE) */
 .msg.me {
     align-self: flex-end;
     background: linear-gradient(135deg, #4f46e5, #6366f1);
     color: white;
     border-bottom-right-radius: 6px;
+    text-align: left;
 }
 
-/* RECEIVED MESSAGE */
+/* RECEIVED (LEFT SIDE) */
 .msg.other {
     align-self: flex-start;
     background: #ffffff;
@@ -52,18 +53,18 @@
     border-bottom-left-radius: 6px;
 }
 
-/* sender info */
+/* meta info */
 .meta {
-    font-size: 12px;
+    font-size: 11px;
+    margin-top: 6px;
     opacity: 0.7;
-    margin-top: 5px;
 }
 
 /* input bar */
 .chat-input {
     display: flex;
     padding: 12px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #e5e7eb;
     background: white;
 }
 
@@ -71,7 +72,7 @@
     flex: 1;
     padding: 12px 14px;
     border-radius: 25px;
-    border: 1px solid #ccc;
+    border: 1px solid #d1d5db;
     font-size: 15px;
     outline: none;
 }
@@ -98,17 +99,23 @@
 
     <!-- messages -->
     <div class="chat-box">
+
         {% for m in messages %}
 
-            <div class="msg {% if m.sender == request.user %}me{% else %}other{% endif %}">
-                {{ m.text }}
-
-                <div class="meta">
-                    {{ m.sender_type }}
+            {% if m.sender == request.user %}
+                <div class="msg me">
+                    {{ m.text }}
+                    <div class="meta">You • {{ m.created_at|date:"H:i" }}</div>
                 </div>
-            </div>
+            {% else %}
+                <div class="msg other">
+                    {{ m.text }}
+                    <div class="meta">{{ m.sender_type }} • {{ m.created_at|date:"H:i" }}</div>
+                </div>
+            {% endif %}
 
         {% endfor %}
+
     </div>
 
     <!-- input -->
