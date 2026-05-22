@@ -30,6 +30,12 @@ class SupportRequest(models.Model):
     title=models.CharField(max_length=200)
     description=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
+    attachment = models.FileField(
+        upload_to='support_files/',
+        null=True,
+        blank=True
+    )
+
 
     class Meta:
         ordering = ['-created_at']

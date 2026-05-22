@@ -1,89 +1,114 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<!-- Support Requests (VIEW ONLY) -->
-<div class="card shadow-sm p-3 mb-3">
-    <h5>Support Requests</h5>
+<div class="container-fluid mt-2">
 
-    {% for r in support_requests %}
-        <div class="border rounded p-2 mt-2">
-            <b>{{ r.title }}</b>
-            <p>{{ r.description }}</p>
+    <div class="d-flex flex-column mb-4 px-1">
+        <div class="d-flex align-items-center gap-3">
+            <div style="font-size: 2rem; filter: drop-shadow(0 0 8px var(--spore-glow));">🔮</div>
+            <h2 class="mb-0" style="font-family: 'Cinzel', serif; font-weight: 800; color: #f0fff7; text-shadow: 0 3px 6px #000000, 0 0 15px rgba(168, 255, 208, 0.5);">
+                Counselor Dashboard
+            </h2>
+        </div>
+        <p class="mt-1 mb-0" style="color: #a6bfae; font-weight: 500; text-shadow: 0 1px 3px #000;">
+            Manage campus support requests, scheduled slots, and confidential chats.
+        </p>
+    </div>
 
-            <small class="text-muted">
-                Student: {{ r.anonymous_profile.anon_id }}
-            </small>
+    <div class="row g-4">
+
+        <div class="col-lg-4">
+            <div class="card p-4 h-100" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+                <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+                    🍃 Support Requests
+                </h5>
+
+                {% for r in support_requests %}
+                    <div class="card p-3 mb-2" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
+                        <h6 style="color: #ffffff; font-weight: 800; text-shadow: 0 2px 4px #000000; margin-bottom: 6px;">
+                            {{ r.title }}
+                        </h6>
+                        <p style="color: #e3ffe1; font-size: 0.95rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 4px rgba(0,0,0,0.9); margin-bottom: 8px;">
+                            {{ r.description }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center pt-2" style="border-top: 1px solid rgba(168, 255, 208, 0.15);">
+                            <span class="font-monospace small" style="color: var(--spore-glow); font-weight: 700;">
+                                ID: {{ r.anonymous_profile.anon_id }}
+                            </span>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500;">No requests active in the garden.</p>
+                {% endfor %}
+            </div>
         </div>
 
-    {% empty %}
-        <p class="text-muted">No support requests</p>
-    {% endfor %}
-</div>
+        <div class="col-lg-4">
+            <div class="card p-4 h-100" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+                <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+                    ⏳ Appointment Requests
+                </h5>
 
+                {% for a in appointments %}
+                    <div class="card p-3 mb-3" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
+                        <div style="color: #ffffff; font-weight: 800; text-shadow: 0 2px 4px #000000; margin-bottom: 4px;">
+                            <i class="bi bi-person-circle me-1" style="color: var(--mystic-lavender);"></i> {{ a.anonymous_profile }}
+                        </div>
 
-<!-- Appointments -->
-<div class="card shadow-sm p-3 mt-3">
-    <h5 class="mb-3">Appointment Requests</h5>
+                        <div class="small mb-2" style="color: #e3ffe1; font-weight: 600; text-shadow: 0 2px 4px #000000;">
+                            <i class="bi bi-calendar3 me-1 text-warning"></i> {{ a.slot.date }} • {{ a.slot.time_slot }}
+                        </div>
 
-    {% for a in appointments %}
-        <div class="border rounded p-3 mb-2">
+                        <span class="badge mb-3 d-inline-block align-self-start" style="background: #12281a; border: 2px solid var(--spore-glow); color: var(--spore-glow); font-weight: 700;">
+                            {{ a.status }}
+                        </span>
 
-            <b>{{ a.anonymous_profile }}</b><br>
-
-            <small>
-                {{ a.slot.date }} | {{ a.slot.time_slot }}
-            </small><br>
-
-            <span class="badge bg-warning text-dark">
-                {{ a.status }}
-            </span>
-
-            <div class="mt-2">
-                <a href="{% url 'update_appointment' a.id 'approved' %}" class="btn btn-success btn-sm">
-                    Approve
-                </a>
-
-                <a href="{% url 'update_appointment' a.id 'rejected' %}" class="btn btn-danger btn-sm">
-                    Reject
-                </a>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'update_appointment' a.id 'approved' %}" class="btn btn-primary btn-sm w-100" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                                Approve
+                            </a>
+                            <a href="{% url 'update_appointment' a.id 'rejected' %}" class="btn btn-soft btn-sm w-100" style="color: var(--fairy-pink); border-color: var(--fairy-pink); font-weight: 700;">
+                                Reject
+                            </a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500;">No pending appointments pinned.</p>
+                {% endfor %}
             </div>
-
         </div>
 
-    {% empty %}
-        <p class="text-muted">No appointments yet.</p>
-    {% endfor %}
-</div>
+        <div class="col-lg-4">
+            <div class="card p-4 h-100" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+                <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+                    💬 Live Conversations
+                </h5>
 
+                {% for convo in conversations %}
+                    <div class="card p-3 mb-2 d-flex flex-column gap-3" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
+                        <div>
+                            <div style="color: #ffffff; font-weight: 800; font-size: 0.95rem; text-shadow: 0 2px 4px #000000;">
+                                <i class="bi bi-incognito me-1" style="color: var(--spore-glow);"></i> ID: {{ convo.anonymous_profile.anon_id }}
+                            </div>
+                            <small style="color: #a6bfae; font-style: italic; font-weight: 500;">Active chat stream</small>
+                        </div>
 
-<!-- Conversations -->
-<div class="card shadow-sm p-3 mt-3">
-    <h5 class="mb-3">Conversations</h5>
-
-    {% for convo in conversations %}
-        <div class="d-flex justify-content-between align-items-center border rounded p-2 mt-2">
-
-            <div>
-                <b>{{ convo.anonymous_profile.anon_id }}</b><br>
-                <small class="text-muted">Tap to open conversation</small>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'chat' convo.id %}" class="btn btn-primary btn-sm px-3 w-100" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                                Open
+                            </a>
+                            <a href="{% url 'delete_conversation' convo.id %}" class="btn btn-soft btn-sm px-3" style="color: var(--fairy-pink); border-color: var(--fairy-pink); font-weight: 700;">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500;">Silence across the chat loops.</p>
+                {% endfor %}
             </div>
-
-            <div>
-                <a href="{% url 'chat' convo.id %}" class="btn btn-success btn-sm">
-                    Open
-                </a>
-
-                <a href="{% url 'delete_conversation' convo.id %}" class="btn btn-danger btn-sm">
-                    Delete
-                </a>
-            </div>
-
         </div>
 
-    {% empty %}
-        <p class="text-muted">No conversations yet</p>
-    {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

@@ -8,14 +8,14 @@ from .forms import SupportRequestForm
 
 @login_required
 def create_request(request):
-    form = SupportRequestForm(request.POST or None)
+    form = SupportRequestForm(request.POST, request.FILES)
 
     if request.method == "POST":
         if form.is_valid():
             anon, _ = AnonymousProfile.objects.get_or_create(user=request.user)
 
             obj = form.save(commit=False)
-            obj.anonymous_profile = anon
+            obj.anonymous_profile = request.user.anonymousprofile
             obj.save()
 
             return redirect('my_request')

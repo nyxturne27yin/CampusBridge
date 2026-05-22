@@ -1,8 +1,8 @@
-# support/forms.py
 from django import forms
 from .models import SupportRequest
 
 class SupportRequestForm(forms.ModelForm):
+
     class Meta:
         model = SupportRequest
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'attachment']

@@ -1,87 +1,139 @@
 {% extends 'base.html' %}
 {% block content %}
 
- <h3>Student Dashboard </h3>
-    <div class="card shadow-sm p-3 mt-3">
-    <h5> My Support Request</h5>
-    <a href="{% url 'create_request' %}" class="btn btn-primary btn-sm">New Request</a>
-    {% for s in support_request %}
-    <div class="card p-2 mt-2">
-    <b>{{ s.title }}</b>
-        <p>{{s.description }}</p>
-        <p>Status:{{ s.status }}</p>
+<div class="container mt-2">
 
-    </div>
-    {% empty %}
-    <p class="text-muted">No  request</p>
-    {% endfor %}
-    </div>
-    <!--Messaging-->
+  <div class="d-flex align-items-center mb-4 gap-3">
+    <div style="font-size: 2rem; filter: drop-shadow(0 0 8px var(--spore-glow));">🎓</div>
+    <h2 class="mb-0" style="font-family: 'Cinzel', serif; font-weight: 800; color: #f0fff7; text-shadow: 0 3px 6px #000000, 0 0 15px rgba(168, 255, 208, 0.5);">
+      Student Dashboard
+    </h2>
+  </div>
 
-    <div class="card shadow-sm p-3 mt-3">
-    <h5> Messages</h5>
-    {% for c in conversation %}
-    <div class="card p-2 mt-2">
-    Conversation #{{ c.id }}
-    <a href="{% url 'chat' c.id %}" class="btn btn-sm btn-primary">Open</a>
-    </div>
+  <div class="row g-4">
 
-    {% empty %}
-    <p class="text-muted">No Conversation</p>
-    {% endfor %}
-    </div>
+    <div class="col-lg-8">
 
-<div class="card shadow-sm p-3 mt-3">
-<h5> Appointments</h5>
-<a href="{% url 'view_slots' %}" class="btn btn-success btn-sm mb-2">Book Slot</a>
+      <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+            🍃 My Support Requests
+          </h5>
+          <a href="{% url 'create_request' %}" class="btn btn-primary btn-sm">New Request</a>
+        </div>
 
-    {% for a in appointments %}
-    <div class="card p-2 mt-2">
-        <p><b> Date</b>{{ a.slot.date }}</p>
-     <p><b> Time</b> {{ a.slot.time_slot }} </p><p><b> status</b> {{ a.status }}</p>
-    </div>
-    {% empty %}
-    <p class="text-muted">No appointments</p>
-    {% endfor %}
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="card shadow-sm p-3 mt-3">
-<h5> Quick Action</h5>
-
-
-<div class='card p-2 mt-2'>
-<a href="{% url 'create_request' %}">
-  Create Support Request
-</a>
-
-</div>
-<div class="card p-2 mt-2">
-<a href="#">  Track Submitted Requests</a>
-
-</div>
-        <div class="card p-2 mt-2">
-<a href="{% url 'conversation_list' %}" class="btn btn-primary">
-    Messages
-</a>
+        {% for s in support_request %}
+          <div class="card p-3 mb-2" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h6 style="color: #ffffff; font-weight: 800; text-shadow: 0 2px 4px #000000; margin-bottom: 0;">{{ s.title }}</h6>
+              <span class="badge" style="background: #12281a; border: 2px solid var(--spore-glow); color: var(--spore-glow); font-weight: 700; text-shadow: none;">
+                {{ s.status }}
+              </span>
             </div>
+            <p style="color: #e3ffe1; font-size: 1rem; font-weight: 500; margin-bottom: 0; line-height: 1.5; text-shadow: 0 2px 4px rgba(0,0,0,0.9);">
+              {{ s.description }}
+            </p>
+          </div>
+        {% empty %}
+          <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500; text-shadow: 0 1px 3px #000;">No requests active in the garden.</p>
+        {% endfor %}
+      </div>
+
+      <div class="card p-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+            ⏳ Scheduled Appointments
+          </h5>
+          <a href="{% url 'view_slots' %}" class="btn btn-soft btn-sm px-3" style="color: var(--spore-glow); border-color: var(--spore-glow); font-weight: 700;">
+            Book Slot
+          </a>
+        </div>
+
+        <div class="row g-2">
+          {% for a in appointments %}
+            <div class="col-md-6">
+              <div class="card p-3 h-100" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge rounded-circle p-2" style="background: rgba(168, 255, 208, 0.15); border: 1px solid var(--spore-glow);"><i class="bi bi-calendar3" style="color: var(--spore-glow);"></i></span>
+                  <span style="color: #ffffff; font-weight: 800; font-size: 1rem; text-shadow: 0 2px 4px #000000;">{{ a.slot.date }}</span>
+                </div>
+                <div style="color: #e3ffe1; font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; text-shadow: 0 2px 4px #000000;">
+                  <i class="bi bi-clock me-1 text-warning"></i> Time: {{ a.slot.time_slot }}
+                </div>
+                <div style="color: #e3ffe1; font-weight: 600; font-size: 0.95rem; text-shadow: 0 2px 4px #000000;">
+                  <i class="bi bi-info-circle me-1 text-info"></i> Status: <strong style="color: var(--spore-glow); font-weight: 800;">{{ a.status }}</strong>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="col-12">
+              <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500; text-shadow: 0 1px 3px #000;">No appointments pinned to the ancient trees.</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+      <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+          💬 Active Messages
+        </h5>
+
+        {% for c in conversation %}
+          <div class="card p-3 mb-2 d-flex flex-row justify-content-between align-items-center" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-chat-right-text" style="color: var(--mystic-lavender);"></i>
+              <span style="color: #ffffff; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px #000000;">Conversation #{{ c.id }}</span>
+            </div>
+            <a href="{% url 'chat' c.id %}" class="btn btn-soft btn-sm px-3" style="color: var(--mystic-lavender); border-color: var(--mystic-lavender); font-weight: 700;">Open</a>
+          </div>
+        {% empty %}
+          <p class="text-center py-2 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500; text-shadow: 0 1px 3px #000;">Silence across the woods.</p>
+        {% endfor %}
+      </div>
+
+      <div class="card p-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+          ✨ Quick Actions
+        </h5>
+
+        <div class="list-group gap-2">
+
+          <a href="{% url 'create_request' %}" class="list-group-item list-group-item-action p-3 rounded-3 text-start border-0 d-flex align-items-center justify-content-between"
+             style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(168, 255, 208, 0.15) !important; color: #ffffff; font-weight: 700; text-shadow: 0 2px 4px #000000; transition: all 0.2s ease;">
+            <span><i class="bi bi-plus-circle me-2" style="color: var(--spore-glow);"></i> Create Support Request</span>
+            <i class="bi bi-chevron-right small opacity-50" style="color: var(--spore-glow);"></i>
+          </a>
+
+          <a href="#" class="list-group-item list-group-item-action p-3 rounded-3 text-start border-0 d-flex align-items-center justify-content-between"
+             style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(168, 255, 208, 0.15) !important; color: #ffffff; font-weight: 700; text-shadow: 0 2px 4px #000000; transition: all 0.2s ease;">
+            <span><i class="bi bi-eye me-2" style="color: var(--fairy-pink);"></i> Track Submitted Requests</span>
+            <i class="bi bi-chevron-right small opacity-50" style="color: var(--fairy-pink);"></i>
+          </a>
+
+          <a href="{% url 'conversation_list' %}" class="btn btn-primary w-100 mt-2 py-2.5 d-flex align-items-center justify-content-center gap-2" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+            <i class="bi bi-mailbox"></i> Messages
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
+
+<style>
+  .list-group-item:hover {
+    background: rgba(168, 255, 208, 0.1) !important;
+    border-color: var(--spore-glow) !important;
+    transform: translateX(4px);
+    box-shadow: 0 0 15px rgba(168, 255, 208, 0.2);
+  }
+</style>
+
 {% endblock %}

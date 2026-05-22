@@ -1,40 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-2">
 
+  <div class="card p-5 text-center mb-5">
+    <div class="mb-2" style="font-size: 2rem; filter: drop-shadow(0 0 8px var(--magic-pink));">✨</div>
+ <h1 class="display-5 mb-3" style="color: #e6fff4; font-family: 'Cinzel', serif; font-weight: 800; text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9), 0 0 20px rgba(126, 255, 195, 0.7); letter-spacing: 0.5px;">
+  You are not alone
+</h1>
 
-  <div class="card shadow-sm p-4 text-center"
-       style="background: linear-gradient(135deg, #F7F9FC, #EAF1FF); border-radius: 16px;">
+<p class="fs-5 mb-4" style="color: #fff2cc; font-weight: 700; letter-spacing: 0.5px; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95), 0 0 10px rgba(255, 210, 105, 0.3);">
+  A safe, confidential campus support system for students and staff.
+</p>
 
-    <h1 style="color:rebeccapurple;">You are not alone</h1>
-
-    <p class="text-muted mt-2">
-      A safe, confidential campus support system for students and staff.
+    <p class="mx-auto" style="max-width: 700px; color: var(--muted); font-size: 1.05rem; line-height: 1.7;">
+      Our vision is to provide accessible counseling, anonymous support, and real-time communication between students and counselors in a tranquil, supportive environment.
     </p>
-
-    <p class="mt-3">
-      Our vision is to provide accessible counseling, anonymous support, and real-time communication between students and counselors.
-    </p>
-
+    <div class="mt-2" style="font-size: 1.2rem; opacity: 0.4;">✦ 🌸 ✦</div>
   </div>
 
-
-  <div class="row mt-4">
+  <div class="row g-4">
 
     <div class="col-md-6">
-      <div class="card shadow-sm p-4 text-center">
-        <h4>Login</h4>
-        <p class="text-muted">Access your dashboard</p>
-        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+      <div class="card p-4 text-center">
+        <div class="mb-2" style="font-size: 1.5rem; filter: drop-shadow(0 0 5px var(--neon-lavender));">🔑</div>
+        <h3 class="mb-2" style="color: var(--text); font-family: 'Cinzel', serif;">Enter Portal</h3>
+        <p style="color: var(--muted); font-size: 0.95rem;" class="mb-4">Access your enchanted campus dashboard</p>
+        <div class="d-grid px-4">
+          <a href="{% url 'login' %}" class="btn btn-primary btn-lg fs-6">Login</a>
+        </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="card shadow-sm p-4 text-center">
-        <h4>Register</h4>
-        <p class="text-muted">Create your account</p>
-        <a href="{% url 'register' %}" class="btn btn-outline-primary">Register</a>
+      <div class="card p-4 text-center">
+        <div class="mb-2" style="font-size: 1.5rem; filter: drop-shadow(0 0 5px var(--enchanted-gold));">📜</div>
+        <h3 class="mb-2" style="color: var(--text); font-family: 'Cinzel', serif;">Begin Journey</h3>
+        <p style="color: var(--muted); font-size: 0.95rem;" class="mb-4">Create your secure, confidential account</p>
+        <div class="d-grid px-4">
+          <a href="{% url 'register' %}" class="btn btn-soft btn-lg fs-6 py-2">Register</a>
+        </div>
       </div>
     </div>
 

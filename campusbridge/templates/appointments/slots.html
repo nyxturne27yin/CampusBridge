@@ -1,92 +1,87 @@
 <div class="container py-5">
 
-    <h2 class="text-center fw-bold mb-5"
-        style="color:#4c1d95; font-size:34px; letter-spacing:0.5px;">
-        Available Appointment Slots
-    </h2>
+    <div class="text-center mb-5">
+        <h2 class="fw-light"
+            style="font-family: 'Cinzel', serif; color: #f4fff9; font-size: 26px; letter-spacing: 1.5px;">
+            Available Appointment Slots
+        </h2>
+    </div>
 
     {% regroup slots by date as slot_days %}
 
     {% for day in slot_days %}
 
-    <div class="mb-5">
+    <div class="mb-4 mx-auto" style="max-width: 750px;">
 
-        <h4 class="text-center fw-semibold mb-3"
-            style="color:#6d28d9;">
-            {{ day.grouper }}
-        </h4>
+        <div class="d-flex align-items-center mb-2 px-1">
+            <span style="font-family: 'Cinzel', serif; color: #ffe6a3; font-size: 0.95rem; font-weight: 400; letter-spacing: 1px;">
+                {{ day.grouper }}
+            </span>
+            <div class="ms-3 flex-grow-1" style="height: 1px; background: rgba(168, 255, 208, 0.15);"></div>
+        </div>
 
-        <div class="d-flex justify-content-center">
+        <div class="table-responsive" style="border-radius: 10px; border: 1px solid rgba(168, 255, 208, 0.2);">
+            <table class="table table-borderless text-center align-middle mb-0"
+                   style="background: rgba(7, 18, 10, 0.95);">
 
-            <div class="table-responsive"
-                 style="width:85%;">
+                <thead>
+                    <tr style="background: rgba(0, 0, 0, 0.3); color: #bdffdc; font-weight: 400; font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid rgba(168, 255, 208, 0.15);">
+                        <th style="padding: 10px; font-weight: 400;">Counselor</th>
+                        <th style="padding: 10px; font-weight: 400;">Time Slot</th>
+                        <th style="padding: 10px; font-weight: 400;">Action</th>
+                    </tr>
+                </thead>
 
-                <table class="table table-borderless text-center align-middle shadow-sm"
-                       style="
-                            border-radius:14px;
-                            overflow:hidden;
-                            background:#ffffff;
-                       ">
-
-                    <thead style="background:#f3f0ff;">
-                        <tr style="color:#4c1d95; font-weight:600;">
-                            <th>Counselor</th>
-                            <th>Time</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
+                <tbody>
                     {% for slot in day.list %}
+                    <tr style="border-bottom: 1px solid rgba(168, 255, 208, 0.08);" class="clean-chart-row">
 
-                    <tr style="border-bottom:1px solid #f1f1f1;">
-
-                        <td style="padding:14px;">
+                        <td style="padding: 12px; color: #f4fff9; font-weight: 300; font-size: 0.95rem;">
                             {{ slot.counselor.username }}
                         </td>
 
-                        <td style="padding:14px; color:#374151;">
+                        <td style="padding: 12px; color: #bdffdc; font-weight: 300; font-size: 0.95rem;">
                             {{ slot.time_slot }}
                         </td>
 
-                        <td style="padding:14px;">
+                        <td style="padding: 12px;">
                             <a href="{% url 'book_slot' slot.id %}"
-                               class="btn btn-sm"
-                               style="
-                                    background:#7c3aed;
-                                    color:white;
-                                    padding:6px 14px;
-                                    border-radius:10px;
-                                    font-weight:500;
-                                    transition:0.2s;
-                               "
-                               onmouseover="this.style.background='#5b21b6'"
-                               onmouseout="this.style.background='#7c3aed'">
+                               class="btn btn-primary btn-sm"
+                               style="font-size: 0.8rem; font-weight: 500; padding: 3px 14px; border-radius: 6px; font-family: 'Inter', sans-serif;">
                                 Book
                             </a>
                         </td>
 
                     </tr>
-
                     {% endfor %}
+                </tbody>
 
-                    </tbody>
-
-                </table>
-
-            </div>
-
+            </table>
         </div>
 
     </div>
 
     {% empty %}
 
-    <p class="text-center text-muted">
-        No slots available
-    </p>
+    <div class="text-center py-4 mx-auto rounded-3"
+         style="max-width: 400px; background: rgba(7, 18, 10, 0.95); border: 1px solid rgba(168, 255, 208, 0.15);">
+        <p class="mb-0" style="font-weight: 300; font-size: 0.9rem; color: rgba(168, 255, 208, 0.6); font-style: italic;">No appointment slots available.</p>
+    </div>
 
     {% endfor %}
 
 </div>
+
+<style>
+    body {
+        background:
+            radial-gradient(circle at 10% 20%, rgba(189, 166, 255, 0.12), transparent 40%),
+            radial-gradient(circle at 90% 85%, rgba(168, 255, 208, 0.12), transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(34, 58, 43, 0.65), transparent 75%),
+            #0b110e !important;
+        background-attachment: fixed !important;
+    }
+    .clean-chart-row:hover {
+        background: rgba(168, 255, 208, 0.04) !important;
+    }
+</style>
