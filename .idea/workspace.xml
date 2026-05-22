@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html">
-      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/manage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/notifications.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/inbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/inbox.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/student_inbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/student_inbox.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/support/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/support/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +34,12 @@
     &quot;assignee&quot;: &quot;tanvin-nahar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/nyxturne27yin/CampusBridge.git",
-    "accountId": "0853cfc3-9c92-4c14-9918-2e9fe107f926"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nyxturne27yin/CampusBridge.git&quot;,
+    &quot;accountId&quot;: &quot;0853cfc3-9c92-4c14-9918-2e9fe107f926&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -76,28 +57,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ABC\PycharmProjects\PythonProject\CampusBridge\campusbridge\static" />
