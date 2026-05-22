@@ -1,33 +1,153 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
 
-<h2>Start a Conversation</h2>
+<style>
+    .chat-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
 
+    .chat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 10px;
+        border-radius: 12px;
+        transition: 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+    }
 
-{% for c in counselors %}
-<div class="card p-2 mt-2">
-    <p>Counselor: {{ c.username }}</p>
+    .chat-item:hover {
+        background: #f5f7fb;
+        transform: translateX(3px);
+    }
 
-    <a href="{% url 'start_conversation' c.id %}" class="btn btn-primary btn-sm">
-        Start Chat
-    </a>
+    .chat-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6c5ce7, #74b9ff);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .chat-title {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .chat-sub {
+        font-size: 12px;
+        color: #6c757d;
+    }
+
+    .delete-btn {
+        border: none;
+        background: transparent;
+        color: #dc3545;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 8px;
+        transition: 0.2s;
+    }
+
+    .delete-btn:hover {
+        background: rgba(220,53,69,0.1);
+    }
+
+    .section-title {
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <h3 class="mb-3">Support Chats</h3>
+
+    <!-- Counselors -->
+    <div class="chat-card mb-4">
+        <div class="section-title">Start New Conversation</div>
+
+        {% for c in counselors %}
+        <div class="chat-item">
+            <div class="chat-left">
+                <div class="avatar">
+                    {{ c.username|slice:":1"|upper }}
+                </div>
+
+                <div>
+                    <div class="chat-title">{{ c.username }}</div>
+                    <div class="chat-sub">Available Counselor</div>
+                </div>
+            </div>
+
+            <a href="{% url 'start_conversation' c.id %}" class="btn btn-sm btn-primary rounded-pill">
+                Message
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Conversations -->
+    <div class="chat-card">
+
+        <div class="section-title">Your Conversations</div>
+
+        {% for convo in conversations %}
+
+        <div class="chat-item">
+
+            <a href="{% url 'chat' convo.id %}" class="chat-left text-decoration-none text-dark flex-grow-1">
+
+                <div class="avatar">
+                    {{ convo.anonymous_profile.anon_id|slice:":2"|upper }}
+                </div>
+
+                <div>
+                    <div class="chat-title">
+                        {{ convo.anonymous_profile.anon_id }}
+                    </div>
+                    <div class="chat-sub">
+                        Tap to open conversation
+                    </div>
+                </div>
+
+            </a>
+
+            <a href="{% url 'delete_conversation' convo.id %}"
+               onclick="return confirm('Delete this chat?');"
+               class="delete-btn">
+                🗑
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <div class="chat-sub">No conversations yet.</div>
+
+        {% endfor %}
+
+    </div>
+
 </div>
-{% endfor %}
-
-<hr>
-
-<h3>Your Conversations</h3>
-
-{% for convo in conversations %}
-<div class="card p-2 mt-2">
-    <p>Chat #{{ convo.id }}</p>
-
-    <a href="{% url 'chat' convo.id %}" class="btn btn-success btn-sm">
-        Open Chat
-    </a>
-</div>
-{% empty %}
-<p>No active conversations yet.</p>
-{% endfor %}
 
 {% endblock %}

@@ -1,83 +1,70 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
+<!-- Support Requests -->
+<div class="card shadow-sm p-3">
+    <h5>Support Requests</h5>
 
-<h3>Counselor Dashboard </h3>
-
-    <div class="card shadow-sm p-3 mt-3">
-    <h5> My Support Request</h5>
-
-    {% for s in support_request %}
-    <div class="card p-2 mt-2">
-    <b>{{ s.title }}</b>
-        <p>{{s.description }}</p>
-       <small> ANON ID:{{ s.anonymous_profile.anon_id }}</small>
-
-    </div>
+    {% for r in requests %}
+        <div class="border rounded p-2 mt-2">
+            <b>{{ r.title }}</b>
+            <p>{{ r.description }}</p>
+        </div>
     {% empty %}
-    <p class="text-muted">No  request</p>
+        <p class="text-muted">No request</p>
     {% endfor %}
-    </div>
-    <!--Messaging-->
-
-    <div class="card shadow-sm p-3 mt-3">
-    <h5> Conversation</h5>
-    {% for c in conversation %}
-    <div class="card p-2 mt-2">
-    Conversation #{{ c.id }}
-    <a href="{% url 'chat' c.id %}" class="btn btn-sm btn-primary">Open</a>
-    </div>
-
-    {% empty %}
-    <p class="text-muted">No Conversation</p>
-    {% endfor %}
-    </div>
-
-<div class="card shadow-sm p-3 mt-3">
-<h5> Appointments</h5>
-
-
-    {% for a in appointments %}
-    <div class="card p-2 mt-2">
-  Status:{{a.status}}
-    {% if a.status == "pending" %}
-    <a href="{%  url 'update_appointment' a.id 'approved' %}"
-    class="btn btn-success btn-sm">
-        Approve
-    </a>
-        <a href="{%  url 'update_appointment' a.id 'rejected' %}"
-    class="btn btn-danger btn-sm">Reject
-        </a>
-    {% endif %}
-    </div>
-    {% empty %}
-    <p class="text-muted">No appointments</p>
-    {% endfor %}
-    </div>
-
-
-<div class="card shadow-sm p-3 mt-3">
-    <h5> Availability Slots</h5>
-<a href="{% url 'create_slot' %}" class="btn btn-dark btn-sm mb-2">Create Slot</a>
-    {% for s in slots %}
-    <div class="card p-2 mt-2">
-    {{ s.date }}-{{ s.time_slot }}
-
-    </div>
-
-    {% empty %}
-    <p class="text-muted">No slots Available</p>
-    {% endfor %}
-    </div>
-
-
-
-
-<div class='card p-3'>
-    <p> Manage Availability</p>
 </div>
-<a href="{% url 'conversation_list' %}" class="btn btn-primary">
-    Messages
-</a>
+
+
+<!-- Messaging -->
+<div class="card shadow-sm p-3 mt-3">
+
+    <h5 class="mb-3">Conversations</h5>
+
+    {% for convo in conversations %}
+
+        <div class="d-flex justify-content-between align-items-center border rounded p-2 mt-2">
+
+            <div class="d-flex align-items-center">
+
+                <!-- Profile Icon -->
+                <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-3"
+                     style="width:45px;height:45px;">
+
+                    👤
+                </div>
+
+                <div>
+                    <b>{{ convo.anonymous_profile.anon_id }}</b>
+                    <br>
+                    <small class="text-muted">
+                        Tap to open conversation
+                    </small>
+                </div>
+
+            </div>
+
+            <div>
+
+                <a href="{% url 'chat' convo.id %}"
+                   class="btn btn-success btn-sm">
+                    Open
+                </a>
+
+                <a href="{% url 'delete_conversation' convo.id %}"
+                   class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+        <p class="text-muted">No conversations yet.</p>
+    {% endfor %}
+
+</div>
 
 {% endblock %}

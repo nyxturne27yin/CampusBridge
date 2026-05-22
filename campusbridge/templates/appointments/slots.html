@@ -1,28 +1,92 @@
-{% extends 'base.html' %}
-{% block content %}
+<div class="container py-5">
 
-<h3>Available Slots</h3>
+    <h2 class="text-center fw-bold mb-5"
+        style="color:#4c1d95; font-size:34px; letter-spacing:0.5px;">
+        Available Appointment Slots
+    </h2>
 
-{% for s in slots %}
-<div class="card shadow-sm p-3 mt-3">
+    {% regroup slots by date as slot_days %}
 
-       <span class="badge bg-primary mb-2">
-        {{ s.counselor.username }}
-    </span>
+    {% for day in slot_days %}
 
-    <div class="text-muted">
-        {{ s.date }} | {{ s.time_slot }}
+    <div class="mb-5">
+
+        <h4 class="text-center fw-semibold mb-3"
+            style="color:#6d28d9;">
+            {{ day.grouper }}
+        </h4>
+
+        <div class="d-flex justify-content-center">
+
+            <div class="table-responsive"
+                 style="width:85%;">
+
+                <table class="table table-borderless text-center align-middle shadow-sm"
+                       style="
+                            border-radius:14px;
+                            overflow:hidden;
+                            background:#ffffff;
+                       ">
+
+                    <thead style="background:#f3f0ff;">
+                        <tr style="color:#4c1d95; font-weight:600;">
+                            <th>Counselor</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for slot in day.list %}
+
+                    <tr style="border-bottom:1px solid #f1f1f1;">
+
+                        <td style="padding:14px;">
+                            {{ slot.counselor.username }}
+                        </td>
+
+                        <td style="padding:14px; color:#374151;">
+                            {{ slot.time_slot }}
+                        </td>
+
+                        <td style="padding:14px;">
+                            <a href="{% url 'book_slot' slot.id %}"
+                               class="btn btn-sm"
+                               style="
+                                    background:#7c3aed;
+                                    color:white;
+                                    padding:6px 14px;
+                                    border-radius:10px;
+                                    font-weight:500;
+                                    transition:0.2s;
+                               "
+                               onmouseover="this.style.background='#5b21b6'"
+                               onmouseout="this.style.background='#7c3aed'">
+                                Book
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <a href="{% url 'book_slot' s.id %}"
-       class="btn btn-success btn-sm mt-2">
-        Book Appointment
-    </a>
+    {% empty %}
+
+    <p class="text-center text-muted">
+        No slots available
+    </p>
+
+    {% endfor %}
 
 </div>
-
-{% empty %}
-<p class="text-muted text-center mt-3">No slots available</p>
-{% endfor %}
-
-{% endblock %}

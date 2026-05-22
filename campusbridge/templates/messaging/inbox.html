@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Inbox</h3>
+
+{% for c in conversations %}
+    <div class="card p-3 mt-2">
+        Conversation #{{ c.id }}
+
+        <a href="{% url 'chat' c.id %}" class="btn btn-primary btn-sm mt-2">
+            Open Chat
+        </a>
+    </div>
+{% empty %}
+    <p>No conversations yet</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,13 +1,36 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% block content %}
-<h2> Create Availability</h2>
-<form method="POST">
-   {% csrf_token %}
-    <input type="date"
-           name="date"
-           class="form-control"><br>
-      <input type="time" name="time_slot" class="form-control"><br>
-    <button class="btn btn-primary">Create </button>
 
-</form>
+<div class="card shadow-sm p-4">
+
+    <h3 class="mb-3">Create Availability Slot</h3>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label class="form-label">Select Date</label>
+        <input type="date"
+               name="date"
+               class="form-control mb-3"
+               min="{{ today }}">
+
+        <label class="form-label">Select Time</label>
+        <input type="time"
+               name="time_slot"
+               class="form-control mb-3">
+
+        <button class="btn btn-primary w-100">
+            Create Slot
+        </button>
+
+    </form>
+
+</div>
+
 {% endblock %}
