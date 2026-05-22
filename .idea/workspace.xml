@@ -5,26 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-May-26_1_01_AM_[Changes]/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-May-26_1_01_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-May-26_1_01_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/accounts/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/accounts/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/appointments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/appointments/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/appointments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/appointments/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/messaging/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/messaging/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/messaging/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/messaging/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/support/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/create_slot.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/create_slot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/support/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/support/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/support/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/notifications.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/appointments/slots.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/dashboards/counselor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/inbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/inbox.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/messaging/student_inbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/messaging/student_inbox.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/campusbridge/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/campusbridge/templates/support/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/templates/support/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,12 +53,12 @@
     &quot;assignee&quot;: &quot;tanvin-nahar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/nyxturne27yin/CampusBridge.git&quot;,
-    &quot;accountId&quot;: &quot;7e005c3b-b5d8-4f07-b000-ef6308566ab3&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nyxturne27yin/CampusBridge.git",
+    "accountId": "0853cfc3-9c92-4c14-9918-2e9fe107f926"
   }
-}</component>
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -155,6 +157,7 @@
       <workItem from="1778473176603" duration="4336000" />
       <workItem from="1778689853781" duration="11030000" />
       <workItem from="1778843273572" duration="4586000" />
+      <workItem from="1779360833604" duration="21863000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />

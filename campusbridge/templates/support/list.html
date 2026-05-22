@@ -1,10 +1,52 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
 {% block content %}
-<h2> My Request</h2>
-{% for r in requests %}
-    <div class ="card p-3 mt-2">
-    <h5> {{ r.title}}</h5>
-    <p>{{ r.description }}</p>
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm p-4">
+        <h2 class="mb-4 text-center">Support Request Form</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text"
+                       name="title"
+                       class="form-control"
+                       placeholder="Enter request title"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="description"
+                          class="form-control"
+                          rows="5"
+                          placeholder="Describe your issue..."
+                          required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Submit Request
+            </button>
+        </form>
     </div>
+
+    <h3 class="mt-5">My Requests</h3>
+
+    {% for r in requests %}
+        <div class="card p-3 mt-3 shadow-sm">
+            <h5>{{ r.title }}</h5>
+            <p>{{ r.description }}</p>
+        </div>
+    {% empty %}
+        <div class="alert alert-info mt-3">
+            No support requests yet.
+        </div>
     {% endfor %}
+
+</div>
+
 {% endblock %}

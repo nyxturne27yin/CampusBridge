@@ -1,27 +1,92 @@
-{% extends "base.html" %}
+<div class="container py-5">
 
-{% block content %}
-<div class="container mt-4">
+    <h2 class="text-center fw-bold mb-5"
+        style="color:#4c1d95; font-size:34px; letter-spacing:0.5px;">
+        Available Appointment Slots
+    </h2>
 
-    <h2>Available Slots</h2>
+    {% regroup slots by date as slot_days %}
 
-    {% if slots %}
-        <ul class="list-group mt-3">
-            {% for slot in slots %}
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>
-                        {{ slot.date }} - {{ slot.time_slot }}
-                    </span>
+    {% for day in slot_days %}
 
-                    <a href="{% url 'book_slot' slot.id %}" class="btn btn-success btn-sm">
-                        Book
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No slots available.</p>
-    {% endif %}
+    <div class="mb-5">
+
+        <h4 class="text-center fw-semibold mb-3"
+            style="color:#6d28d9;">
+            {{ day.grouper }}
+        </h4>
+
+        <div class="d-flex justify-content-center">
+
+            <div class="table-responsive"
+                 style="width:85%;">
+
+                <table class="table table-borderless text-center align-middle shadow-sm"
+                       style="
+                            border-radius:14px;
+                            overflow:hidden;
+                            background:#ffffff;
+                       ">
+
+                    <thead style="background:#f3f0ff;">
+                        <tr style="color:#4c1d95; font-weight:600;">
+                            <th>Counselor</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for slot in day.list %}
+
+                    <tr style="border-bottom:1px solid #f1f1f1;">
+
+                        <td style="padding:14px;">
+                            {{ slot.counselor.username }}
+                        </td>
+
+                        <td style="padding:14px; color:#374151;">
+                            {{ slot.time_slot }}
+                        </td>
+
+                        <td style="padding:14px;">
+                            <a href="{% url 'book_slot' slot.id %}"
+                               class="btn btn-sm"
+                               style="
+                                    background:#7c3aed;
+                                    color:white;
+                                    padding:6px 14px;
+                                    border-radius:10px;
+                                    font-weight:500;
+                                    transition:0.2s;
+                               "
+                               onmouseover="this.style.background='#5b21b6'"
+                               onmouseout="this.style.background='#7c3aed'">
+                                Book
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <p class="text-center text-muted">
+        No slots available
+    </p>
+
+    {% endfor %}
 
 </div>
-{% endblock %}

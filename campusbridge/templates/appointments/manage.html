@@ -1,18 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Manage Appointments</h2>
-{% for a in slots %}
-<div class=" card p-2 mt-2">
-<p> {{ a.anonymous_profile.id}}|{{ a.slot.date  }}{{ a.slot.time_slot }}</p>
 
-<a href="{% url 'update_appointment' a.id 'approved' %}"
+<div class="container mt-4">
 
-class="btn btn-success btn-sm"> Approve</a>
-<a href="{% url 'update_appointment' a.id 'approved' %}"
+    <h2 class="text-center mb-4" style="font-size:32px; font-weight:700;">
+        Manage Appointments
+    </h2>
 
-class="btn btn-success btn-sm"> Reject</a>
+    {% for a in appointments %}
+
+    <div class="card mb-3 shadow-sm p-3" style="border-radius:12px;">
+
+        <h5>
+            Student ID: {{ a.anonymous_profile.id }}
+        </h5>
+
+        <p>
+            Date: <b>{{ a.slot.date }}</b><br>
+            Time: <b>{{ a.slot.time_slot }}</b><br>
+            Status: <span class="badge bg-warning text-dark">{{ a.status }}</span>
+        </p>
+
+        <div class="d-flex gap-2">
+
+            <a href="{% url 'update_appointment' a.id 'approved' %}"
+               class="btn btn-success">
+                Approve
+            </a>
+
+            <a href="{% url 'update_appointment' a.id 'rejected' %}"
+               class="btn btn-danger">
+                Reject
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+        <p class="text-center">No appointments found.</p>
+    {% endfor %}
 
 </div>
 
-    {%  endfor %}
 {% endblock %}

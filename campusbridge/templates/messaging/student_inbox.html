@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>🧑‍⚕️ Counselor Inbox</h3>
+
+    {% if conversations %}
+
+        <ul class="list-group mt-3">
+
+            {% for convo in conversations %}
+
+                <a href="{% url 'chat' convo.id %}"
+                   class="list-group-item list-group-item-action">
+
+                    👤 Student: {{ convo.anonymous_profile.anon_id }}
+
+                    <br>
+
+                    <small class="text-muted">
+                        Open chat
+                    </small>
+
+                </a>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p class="text-muted mt-3">
+            No student messages yet.
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

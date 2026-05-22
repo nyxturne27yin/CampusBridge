@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<h3>Notifications</h3>
+
+{% for n in notifications %}
+
+<div class="card glass-card p-3 mb-2">
+
+    {{ n.message }} <br>
+    <small style="color:gray;">{{ n.created_at }}</small>
+
+</div>
+
+{% empty %}
+<p>No notifications yet</p>
+{% endfor %}

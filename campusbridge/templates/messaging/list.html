@@ -1,33 +1,101 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
 
-<h2>Start a Conversation</h2>
+<div class="container mt-4">
+
+    <h2 class="mb-4">Support Chats</h2>
+
+    <!-- Counselors List -->
+    <div class="card shadow-sm p-3 mb-4">
+        <h5 class="mb-3">Start New Conversation</h5>
+
+        {% for c in counselors %}
+        <div class="d-flex align-items-center justify-content-between border-bottom py-3">
+
+            <div class="d-flex align-items-center">
+
+                <!-- Avatar -->
+                <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center me-3"
+                     style="width:50px; height:50px; font-weight:bold;">
+
+                    {{ c.username|slice:":1"|upper }}
+
+                </div>
+
+                <!-- Counselor Info -->
+                <div>
+                    <h6 class="mb-0">{{ c.username }}</h6>
+                    <small class="text-muted">Available Counselor</small>
+                </div>
+
+            </div>
+
+            <a href="{% url 'start_conversation' c.id %}"
+               class="btn btn-primary btn-sm rounded-pill">
+                Message
+            </a>
+
+        </div>
+        {% empty %}
+        <p>No counselors available.</p>
+        {% endfor %}
+    </div>
 
 
-{% for c in counselors %}
-<div class="card p-2 mt-2">
-    <p>Counselor: {{ c.username }}</p>
+    <!-- Conversation List -->
+    <div class="card shadow-sm p-3">
 
-    <a href="{% url 'start_conversation' c.id %}" class="btn btn-primary btn-sm">
-        Start Chat
-    </a>
+        <h5 class="mb-3">Your Conversations</h5>
+
+        {% for convo in conversations %}
+
+        <a href="{% url 'chat' convo.id %}"
+           class="text-decoration-none text-dark">
+
+            <div class="d-flex align-items-center border-bottom py-3 hover-shadow">
+
+                <!-- Anonymous Avatar -->
+                <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-3"
+                     style="width:55px; height:55px; font-weight:bold; font-size:18px;">
+
+                    A
+
+                </div>
+
+                <!-- Chat Info -->
+                <div class="flex-grow-1">
+
+                    <h6 class="mb-1">
+                        Anonymous Student #{{ convo.id }}
+                    </h6>
+
+                    <small class="text-muted">
+                        Tap to open conversation
+                    </small>
+
+                </div>
+
+                <!-- Messenger Style Arrow -->
+                <div>
+                    <span class="text-muted fs-5">➜</span>
+                </div>
+
+            </div>
+
+        </a>
+
+        {% empty %}
+
+        <div class="alert alert-info">
+            No active conversations yet.
+        </div>
+
+        {% endfor %}
+
+    </div>
+
 </div>
-{% endfor %}
-
-<hr>
-
-<h3>Your Conversations</h3>
-
-{% for convo in conversations %}
-<div class="card p-2 mt-2">
-    <p>Chat #{{ convo.id }}</p>
-
-    <a href="{% url 'chat' convo.id %}" class="btn btn-success btn-sm">
-        Open Chat
-    </a>
-</div>
-{% empty %}
-<p>No active conversations yet.</p>
-{% endfor %}
 
 {% endblock %}

@@ -1,29 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="register-container">
+<div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="glass-card" style="width: 420px;">
 
-    <div class="card shadow p-4 register-card">
-
-        <h3 class="text-center mb-3">Create Account</h3>
+        <h3 class="mb-3 text-center">Create Account</h3>
 
         <form method="POST">
             {% csrf_token %}
 
-            {{ form.as_p }}
+            <input class="form-control mb-2" name="username" placeholder="Username">
 
-            <button class="btn btn-primary w-100 mt-2">
-                Register
-            </button>
+            <input class="form-control mb-2" name="email" placeholder="Email">
+
+            <select class="form-control mb-2" name="role">
+                <option>Student</option>
+                <option>Counselor</option>
+                <option>Staff</option>
+            </select>
+
+            <input class="form-control mb-2" type="password" name="password" placeholder="Password">
+
+            <button class="btn btn-primary w-100 mt-2">Create Account</button>
         </form>
 
         <p class="text-center mt-3">
-            Already have an account?
-            <a href="{% url 'login' %}">Login</a>
+            Already have account?
+            <a href="/login/">Login</a>
         </p>
 
     </div>
-
 </div>
 
 {% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from support.models import AnonymousProfile
 from .models import Conversation, Message
 from accounts.models import User
+from django.http import HttpResponseForbidden
 
 # Create your views here.
 @login_required
@@ -64,3 +65,28 @@ def start_conversation(request, counselor_id):
     )
 
     return redirect('chat', convo_id=convo.id)
+
+
+@login_required
+def counselor_inbox(request):
+    conversations = Conversation.objects.filter(counselor=request.user)
+    return render(request, "messaging/inbox.html", {
+        "conversations": conversations
+    })
+
+
+@login_required
+def student_inbox(request):
+    conversations = Conversation.objects.filter(student=request.user)
+    return render(request, "messaging/inbox.html", {
+        "conversations": conversations
+    })
+
+
+def delete_conversation(request, conversation_id):
+    convo = get_object_or_404(Conversation, id=conversation_id)
+
+    if request.user in [convo.student, convo.counselor]:
+        convo.delete()
+
+    return redirect('counselor_dashboard')
