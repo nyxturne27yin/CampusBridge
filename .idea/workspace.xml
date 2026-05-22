@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/campusbridge/campusbridge/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/campusbridge/campusbridge/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="9c4cb358-3426-48a2-92c0-e9d73551082a" name="Changes" comment="update home.html and base html" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +135,7 @@
       <workItem from="1778689853781" duration="11030000" />
       <workItem from="1778843273572" duration="4586000" />
       <workItem from="1779360833604" duration="21863000" />
-      <workItem from="1779482737649" duration="4631000" />
+      <workItem from="1779482737649" duration="5125000" />
     </task>
     <task id="LOCAL-00001" summary="update home.html">
       <option name="closed" value="true" />
