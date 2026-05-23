@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from support.models import AnonymousProfile
+
 User = get_user_model()
 
 
@@ -25,6 +26,12 @@ class Message(models.Model):
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
     sender_type = models.CharField(max_length=20)
     text = models.TextField()
+
+    attachment = models.FileField(
+        upload_to='chat_files/',
+        blank=True,
+        null=True
+    )
 
     is_read = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)

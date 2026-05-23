@@ -15,4 +15,5 @@ urlpatterns = [
     path('manage/', manage_appointments, name='manage_appointments'),
     path('update/<int:app_id>/<str:status>/', update_appointment, name='update_appointment'),
 
+
 ]

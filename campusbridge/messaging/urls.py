@@ -1,7 +1,9 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns=[path('chat/<int:convo_id>/',views.chat,name='chat'),
-             path('send/<int:convo_id>/',views.send_message,name='send_message'),
+             path("send/<int:conversation_id>/", views.send_message, name="send_message"),
              path('', views.conversation_list, name='conversation_list'),
              path('start/<int:counselor_id>/', views.start_conversation, name='start_conversation'),
              # 👇 ADD THESE
@@ -10,3 +12,5 @@ urlpatterns=[path('chat/<int:convo_id>/',views.chat,name='chat'),
 
              path("delete/<int:conversation_id>/", views.delete_conversation, name="delete_conversation")
              ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

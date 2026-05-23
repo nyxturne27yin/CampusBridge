@@ -181,3 +181,4 @@ def counselor_dashboard(request):
         "slots": slots,
         "notifications": notifications,
     })
+

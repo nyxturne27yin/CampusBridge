@@ -23,21 +23,23 @@ def chat(request, convo_id):
     })
 
 @login_required
-def send_message(request, convo_id):
-    convo = get_object_or_404(Conversation, id=convo_id)
+def send_message(request, conversation_id):
+    convo = Conversation.objects.get(id=conversation_id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
+        text = request.POST.get("text", "")
+        file = request.FILES.get("attachment")
 
-        sender = "counselor" if request.user.role == "counselor" else "student"
+        sender_type = "counselor" if request.user == convo.counselor else "student"
 
         Message.objects.create(
             conversation=convo,
-            sender_type=sender,
-            text=request.POST.get('text')
+            sender_type=sender_type,
+            text=text,
+            attachment=file
         )
 
-    return redirect('chat', convo_id=convo.id)
-
+    return redirect("chat", convo_id=convo.id)
 @login_required
 def conversation_list(request):
     profile = request.user.anonymousprofile

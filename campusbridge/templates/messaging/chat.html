@@ -15,7 +15,6 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-
 .chat-box {
     flex: 1;
     overflow-y: auto;
@@ -24,7 +23,6 @@
     flex-direction: column;
     gap: 14px;
 }
-
 
 .msg {
     max-width: 70%;
@@ -36,17 +34,13 @@
     position: relative;
 }
 
-
 .msg.me {
     align-self: flex-end;
     background: linear-gradient(135deg, #163821, #225a34);
     color: #ffffff;
     border: 1px solid rgba(168, 255, 208, 0.4);
     border-bottom-right-radius: 4px;
-    text-align: left;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
-
 
 .msg.other {
     align-self: flex-start;
@@ -54,31 +48,26 @@
     color: #f0fff7;
     border: 1px solid rgba(177, 150, 255, 0.35);
     border-bottom-left-radius: 4px;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
-
 
 .meta {
     font-size: 11px;
     margin-top: 6px;
     font-weight: 500;
 }
-.msg.me .meta {
-    color: var(--spore-glow);
-}
-.msg.other .meta {
-    color: var(--mystic-lavender);
-}
 
-
+/* input area */
 .chat-input {
     display: flex;
+    align-items: center;
     padding: 14px;
     border-top: 1px solid rgba(168, 255, 208, 0.2);
     background: rgba(5, 12, 8, 0.95);
+    gap: 10px;
 }
 
-.chat-input input {
+/* text input */
+.chat-input input[type="text"] {
     flex: 1;
     padding: 12px 18px;
     border-radius: 25px;
@@ -87,44 +76,37 @@
     color: #ffffff;
     font-size: 15px;
     outline: none;
-    transition: all 0.2s ease;
 }
 
-.chat-input input:focus {
-    border-color: var(--spore-glow);
-    box-shadow: 0 0 10px rgba(168, 255, 208, 0.2);
-}
-
-.chat-input input::placeholder {
+/* file input */
+.chat-input input[type="file"] {
     color: #a6bfae;
-    opacity: 0.6;
+    font-size: 12px;
 }
 
+/* send button */
 .chat-input button {
-    margin-left: 12px;
     border: none;
-    padding: 10px 24px;
+    padding: 10px 22px;
     border-radius: 25px;
-    background: var(--mint-glow);
+    background: linear-gradient(135deg, #a8ffd0, #6fffb1);
     color: #07120a;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .chat-input button:hover {
-    background: #a8ffd0;
     transform: scale(1.03);
-    box-shadow: 0 0 12px rgba(168, 255, 208, 0.4);
 }
 </style>
 
-<h2 class="text-center mb-4" style="font-family: 'Cinzel', serif; font-weight: 800; color: #f0fff7; text-shadow: 0 3px 6px #000000, 0 0 15px rgba(168, 255, 208, 0.5);">
+<h2 class="text-center mb-4" style="color:#f0fff7;">
     💬 Whisper Stream
 </h2>
 
 <div class="chat-wrapper">
 
+    <!-- CHAT MESSAGES -->
     <div class="chat-box">
 
         {% for m in messages %}
@@ -132,11 +114,30 @@
             {% if m.sender == request.user %}
                 <div class="msg me">
                     {{ m.text }}
+
+                    {% if m.attachment %}
+                        <div style="margin-top:8px;">
+                            📎 <a href="{{ m.attachment.url }}" target="_blank" style="color:#a8ffd0;">
+                                View Attachment
+                            </a>
+                        </div>
+                    {% endif %}
+
                     <div class="meta">✦ You • {{ m.created_at|date:"H:i" }}</div>
                 </div>
+
             {% else %}
                 <div class="msg other">
                     {{ m.text }}
+
+                    {% if m.attachment %}
+                        <div style="margin-top:8px;">
+                            📎 <a href="{{ m.attachment.url }}" target="_blank" style="color:#c7b6ff;">
+                                View Attachment
+                            </a>
+                        </div>
+                    {% endif %}
+
                     <div class="meta">✦ {{ m.sender_type }} • {{ m.created_at|date:"H:i" }}</div>
                 </div>
             {% endif %}
@@ -145,9 +146,22 @@
 
     </div>
 
-    <form method="POST" action="{% url 'send_message' convo.id %}" class="chat-input">
+    <!-- INPUT FORM (UPDATED WITH MEDIA) -->
+    <form method="POST"
+          action="{% url 'send_message' convo.id %}"
+          class="chat-input"
+          enctype="multipart/form-data">
+
         {% csrf_token %}
-        <input type="text" name="text" placeholder="Send a scroll message..." autocomplete="off" required>
+
+        <input type="text"
+               name="text"
+               placeholder="Send a scroll message..."
+               autocomplete="off">
+
+        <!-- MEDIA UPLOAD -->
+        <input type="file" name="attachment">
+
         <button type="submit">Send</button>
     </form>
 
