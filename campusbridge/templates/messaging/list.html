@@ -4,86 +4,121 @@
 {% block content %}
 
 <style>
+    /* ================= CHAT COMPONENT DESIGN SYSTEM ================= */
+
     .chat-card {
-        background: #fff;
-        border-radius: 14px;
-        padding: 18px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        background: var(--card);
+        border: 2px solid var(--border);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: var(--neon-glow);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        margin-bottom: 1.5rem;
     }
 
     .chat-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px 10px;
-        border-radius: 12px;
-        transition: 0.2s ease;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(195, 155, 253, 0.1);
+        background: rgba(15, 8, 24, 0.4);
+        margin-bottom: 12px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         text-decoration: none;
         color: inherit;
     }
 
     .chat-item:hover {
-        background: #f5f7fb;
-        transform: translateX(3px);
+        background: var(--card-strong);
+        border-color: rgba(195, 155, 253, 0.4);
+        transform: translateX(4px);
+        box-shadow: 0 4px 15px rgba(195, 155, 253, 0.15);
     }
 
     .chat-left {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
     }
 
+    /* Velvet Sapphire & Deep Purple Gradient Crystal Avatar */
     .avatar {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #6c5ce7, #74b9ff);
-        color: white;
+        background: linear-gradient(135deg, #371854, #1b385c);
+        border: 2px solid var(--mystic-purple);
+        color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 600;
-        font-size: 14px;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 16px;
+        text-shadow: var(--purple-text-glow);
+        box-shadow: 0 0 10px rgba(195, 155, 253, 0.3);
         flex-shrink: 0;
     }
 
     .chat-title {
-        font-weight: 600;
-        font-size: 14px;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--text);
+        text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .chat-item:hover .chat-title {
+        color: #ffffff;
+        text-shadow: var(--white-text-glow);
     }
 
     .chat-sub {
-        font-size: 12px;
-        color: #6c757d;
+        font-size: 13px;
+        color: var(--muted);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
+    /* Burnished Crystal Trash Icon Button */
     .delete-btn {
         border: none;
         background: transparent;
-        color: #dc3545;
+        color: #ff6b8b;
         font-size: 18px;
         cursor: pointer;
-        padding: 6px;
+        padding: 6px 10px;
         border-radius: 8px;
-        transition: 0.2s;
+        transition: all 0.25s ease;
+        text-shadow: 0 0 8px rgba(255, 107, 139, 0.4);
     }
 
     .delete-btn:hover {
-        background: rgba(220,53,69,0.1);
+        background: rgba(255, 107, 139, 0.15);
+        color: #ff335c;
+        text-shadow: 0 0 12px rgba(255, 107, 139, 0.8);
+        transform: scale(1.1);
     }
 
     .section-title {
-        font-weight: 600;
-        margin-bottom: 15px;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--gold-vein);
+        text-shadow: var(--gold-text-glow);
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(217, 180, 115, 0.2);
+        padding-bottom: 8px;
     }
 </style>
 
 <div class="container mt-4">
 
-    <h3 class="mb-3">Support Chats</h3>
+    <h2 class="mb-4 text-center text-md-start" style="color: var(--mystic-purple); text-shadow: var(--purple-text-glow);">Support Chats</h2>
 
-    <!-- Counselors -->
-    <div class="chat-card mb-4">
+    <div class="chat-card">
         <div class="section-title">Start New Conversation</div>
 
         {% for c in counselors %}
@@ -99,14 +134,13 @@
                 </div>
             </div>
 
-            <a href="{% url 'start_conversation' c.id %}" class="btn btn-sm btn-primary rounded-pill">
+            <a href="{% url 'start_conversation' c.id %}" class="btn btn-primary btn-sm px-4">
                 Message
             </a>
         </div>
         {% endfor %}
     </div>
 
-    <!-- Conversations -->
     <div class="chat-card">
 
         <div class="section-title">Your Conversations</div>
@@ -115,7 +149,7 @@
 
         <div class="chat-item">
 
-            <a href="{% url 'chat' convo.id %}" class="chat-left text-decoration-none text-dark flex-grow-1">
+            <a href="{% url 'chat' convo.id %}" class="chat-left text-decoration-none flex-grow-1">
 
                 <div class="avatar">
                     {{ convo.anonymous_profile.anon_id|slice:":2"|upper }}
@@ -134,15 +168,16 @@
 
             <a href="{% url 'delete_conversation' convo.id %}"
                onclick="return confirm('Delete this chat?');"
-               class="delete-btn">
-                🗑
+               class="delete-btn"
+               aria-label="Delete Conversation">
+                <i class="bi bi-trash3-fill"></i>
             </a>
 
         </div>
 
         {% empty %}
 
-        <div class="chat-sub">No conversations yet.</div>
+        <div class="chat-sub p-2 text-center text-md-start">No conversations yet.</div>
 
         {% endfor %}
 

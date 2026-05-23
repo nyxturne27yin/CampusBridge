@@ -1,87 +1,213 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    /* ================= FAIRYCORE TIME-SLOT INTERFACE ================= */
+
+    .slot-timeline-wrapper {
+        max-width: 780px;
+        margin: 0 auto;
+    }
+
+    /* Date Divider Ribbon */
+    .date-divider {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+        margin-bottom: 1.25rem;
+        padding: 0 4px;
+    }
+
+    .date-badge-text {
+        font-family: 'Cinzel', serif;
+        color: var(--gold-dust);
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-shadow: 0 0 10px rgba(227, 188, 118, 0.4);
+        white-space: nowrap;
+    }
+
+    .date-line {
+        flex-grow: 1;
+        height: 2px;
+        margin-left: 15px;
+        background: linear-gradient(90deg, rgba(168, 255, 208, 0.25), transparent);
+    }
+
+    /* Interactive Crystal Row Card */
+    .slot-row-card {
+        background: var(--card);
+        border: 2px solid var(--border);
+        border-radius: 18px;
+        padding: 16px 24px;
+        margin-bottom: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        align-items: center;
+        box-shadow: var(--neon-glow);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slot-row-card:hover {
+        background: var(--card-strong);
+        border-color: var(--fairy-pink);
+        transform: translateX(6px) scale(1.01);
+        box-shadow: 0 0 25px rgba(252, 161, 193, 0.2), 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Column Typography Elements */
+    .counselor-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .counselor-avatar-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--spore-glow);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--spore-glow);
+        transition: all 0.3s ease;
+    }
+
+    .slot-row-card:hover .counselor-avatar-dot {
+        background-color: var(--fairy-pink);
+        box-shadow: 0 0 12px var(--fairy-pink);
+    }
+
+    .counselor-name {
+        color: var(--text);
+        font-size: 15px;
+        font-weight: 500;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .slot-time-display {
+        color: var(--spore-glow);
+        font-size: 14.5px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 6px rgba(168, 255, 208, 0.3);
+    }
+
+    .slot-row-card:hover .slot-time-display {
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Runic Mini Book Button Adjustment */
+    .btn-book-action {
+        background: linear-gradient(135deg, var(--deep-moss), var(--ancient-bark));
+        border: 2px solid var(--spore-glow);
+        color: var(--spore-glow) !important;
+        border-radius: 12px;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding: 6px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), var(--inner-bevel);
+        transition: all 0.3s ease;
+        text-shadow: 0 0 4px rgba(168, 255, 208, 0.4);
+    }
+
+    .slot-row-card:hover .btn-book-action {
+        color: #ffffff !important;
+        background: linear-gradient(135deg, var(--deep-moss), #3d2a27);
+        border-color: var(--fairy-pink);
+        box-shadow: 0 0 15px rgba(252, 161, 193, 0.5);
+        text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Empty Woods State Alert Box */
+    .mythic-empty-state {
+        max-width: 450px;
+        background: var(--card);
+        border: 2px dashed rgba(168, 255, 208, 0.25);
+        border-radius: 20px;
+        color: var(--muted);
+        font-size: 15px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        box-shadow: var(--neon-glow);
+    }
+
+    /* Responsiveness layout collapse configuration */
+    @media (max-width: 576px) {
+        .slot-row-card {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            text-center: center;
+            padding: 20px;
+        }
+        .counselor-info {
+            justify-content: center;
+        }
+        .slot-time-display {
+            text-align: center;
+        }
+        .btn-book-action {
+            width: 100%;
+            margin-top: 4px;
+        }
+    }
+</style>
+
 <div class="container py-5">
 
     <div class="text-center mb-5">
-        <h2 class="fw-light"
-            style="font-family: 'Cinzel', serif; color: #f4fff9; font-size: 26px; letter-spacing: 1.5px;">
+        <h2 style="color: var(--spore-glow); text-shadow: 0 0 15px rgba(168, 255, 208, 0.4); font-size: 28px; letter-spacing: 2px;">
             Available Appointment Slots
         </h2>
     </div>
 
-    {% regroup slots by date as slot_days %}
+    <div class="slot-timeline-wrapper">
+        {% regroup slots by date as slot_days %}
 
-    {% for day in slot_days %}
-
-    <div class="mb-4 mx-auto" style="max-width: 750px;">
-
-        <div class="d-flex align-items-center mb-2 px-1">
-            <span style="font-family: 'Cinzel', serif; color: #ffe6a3; font-size: 0.95rem; font-weight: 400; letter-spacing: 1px;">
-                {{ day.grouper }}
+        {% for day in slot_days %}
+        
+        <div class="date-divider">
+            <span class="date-badge-text">
+                ✦ {{ day.grouper }}
             </span>
-            <div class="ms-3 flex-grow-1" style="height: 1px; background: rgba(168, 255, 208, 0.15);"></div>
+            <div class="date-line"></div>
         </div>
 
-        <div class="table-responsive" style="border-radius: 10px; border: 1px solid rgba(168, 255, 208, 0.2);">
-            <table class="table table-borderless text-center align-middle mb-0"
-                   style="background: rgba(7, 18, 10, 0.95);">
+        {% for slot in day.list %}
+        <div class="slot-row-card">
+            
+            <div class="counselor-info">
+                <div class="counselor-avatar-dot"></div>
+                <div class="counselor-name">{{ slot.counselor.username }}</div>
+            </div>
 
-                <thead>
-                    <tr style="background: rgba(0, 0, 0, 0.3); color: #bdffdc; font-weight: 400; font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid rgba(168, 255, 208, 0.15);">
-                        <th style="padding: 10px; font-weight: 400;">Counselor</th>
-                        <th style="padding: 10px; font-weight: 400;">Time Slot</th>
-                        <th style="padding: 10px; font-weight: 400;">Action</th>
-                    </tr>
-                </thead>
+            <div class="slot-time-display">
+                <i class="bi bi-clock-history me-1"></i> {{ slot.time_slot }}
+            </div>
 
-                <tbody>
-                    {% for slot in day.list %}
-                    <tr style="border-bottom: 1px solid rgba(168, 255, 208, 0.08);" class="clean-chart-row">
+            <div>
+                <a href="{% url 'book_slot' slot.id %}" class="btn btn-book-action">
+                    Book Slot
+                </a>
+            </div>
 
-                        <td style="padding: 12px; color: #f4fff9; font-weight: 300; font-size: 0.95rem;">
-                            {{ slot.counselor.username }}
-                        </td>
+        </div>
+        {% endfor %}
 
-                        <td style="padding: 12px; color: #bdffdc; font-weight: 300; font-size: 0.95rem;">
-                            {{ slot.time_slot }}
-                        </td>
-
-                        <td style="padding: 12px;">
-                            <a href="{% url 'book_slot' slot.id %}"
-                               class="btn btn-primary btn-sm"
-                               style="font-size: 0.8rem; font-weight: 500; padding: 3px 14px; border-radius: 6px; font-family: 'Inter', sans-serif;">
-                                Book
-                            </a>
-                        </td>
-
-                    </tr>
-                    {% endfor %}
-                </tbody>
-
-            </table>
+        {% empty %}
+        
+        <div class="mythic-empty-state text-center py-5 px-4 mx-auto mt-5">
+            <div class="mb-2" style="font-size: 24px;">🍂</div>
+            <p class="mb-0 italic-text">No magical appointment slots are currently open within the forest maps.</p>
         </div>
 
+        {% endfor %}
     </div>
-
-    {% empty %}
-
-    <div class="text-center py-4 mx-auto rounded-3"
-         style="max-width: 400px; background: rgba(7, 18, 10, 0.95); border: 1px solid rgba(168, 255, 208, 0.15);">
-        <p class="mb-0" style="font-weight: 300; font-size: 0.9rem; color: rgba(168, 255, 208, 0.6); font-style: italic;">No appointment slots available.</p>
-    </div>
-
-    {% endfor %}
 
 </div>
 
-<style>
-    body {
-        background:
-            radial-gradient(circle at 10% 20%, rgba(189, 166, 255, 0.12), transparent 40%),
-            radial-gradient(circle at 90% 85%, rgba(168, 255, 208, 0.12), transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(34, 58, 43, 0.65), transparent 75%),
-            #0b110e !important;
-        background-attachment: fixed !important;
-    }
-    .clean-chart-row:hover {
-        background: rgba(168, 255, 208, 0.04) !important;
-    }
-</style>
+{% endblock %}
