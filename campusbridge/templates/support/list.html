@@ -3,9 +3,9 @@
 {% block content %}
 
 <style>
-    /* ================= FAIRYCORE SUPPORT REQUEST COMPONENT SYSTEM ================= */
 
-    /* Custom forest theme card background container */
+
+
     .support-card {
         background: var(--card);
         border: 2px solid var(--border);
@@ -16,7 +16,7 @@
         -webkit-backdrop-filter: blur(16px);
     }
 
-    /* Form Label Styling with high visibility spore-mint text glow */
+
     .form-label {
         color: var(--spore-glow) !important;
         font-family: 'Cinzel', serif;
@@ -27,7 +27,7 @@
         margin-bottom: 8px;
     }
 
-    /* Overwrite input text fields to blend with the forest canopy backdrop */
+
     .form-control, textarea.form-control {
         border-radius: 14px !important;
         border: 2px solid rgba(168, 255, 208, 0.15) !important;
@@ -50,7 +50,7 @@
         box-shadow: 0 0 18px rgba(252, 161, 193, 0.35), inset 0 2px 5px rgba(0, 0, 0, 0.5) !important;
     }
 
-    /* Runic Witchcraft Submit Button styling */
+
     .btn-submit {
         background: linear-gradient(135deg, var(--deep-moss), var(--ancient-bark));
         border: 2px solid var(--spore-glow);
@@ -74,7 +74,7 @@
         transform: translateY(-2px);
     }
 
-    /* Request Item Cards */
+
     .request-item-card {
         background: rgba(18, 29, 23, 0.4);
         border: 1px solid rgba(168, 255, 208, 0.15);
@@ -107,7 +107,7 @@
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     }
 
-    /* Enchanted Alert Box Empty State replacement */
+
     .mythic-alert {
         background: rgba(168, 255, 208, 0.04);
         border: 1px dashed rgba(168, 255, 208, 0.2);
@@ -159,7 +159,7 @@
         </div>
     {% empty %}
         <div class="mythic-alert p-4 mt-3 text-center">
-            🍂 No active support requests tracked in the woods.
+             No active support requests tracked in the woods.
         </div>
     {% endfor %}
 
