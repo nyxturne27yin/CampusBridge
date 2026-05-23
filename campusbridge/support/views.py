@@ -46,3 +46,29 @@ def counselor_requests(request):
     return render(request, 'support/counselor_list.html', {
         'requests': data
     })
+
+def update_request(request, pk):
+    obj = SupportRequest.objects.get(id=pk)
+
+    form = SupportRequestForm(request.POST or None, request.FILES or None, instance=obj)
+
+    if form.is_valid():
+        form.save()
+        return redirect('my_request')
+
+    return render(request, 'support/update.html', {'form': form})
+
+def delete_request(request, pk):
+    obj = SupportRequest.objects.get(id=pk)
+    obj.delete()
+    return redirect('my_request')
+
+
+def track_requests(request):
+    profile = request.user.anonymousprofile
+
+    requests = SupportRequest.objects.filter(anonymous_profile=profile)
+
+    return render(request, 'support/track_requests.html', {
+        'requests': requests
+    })

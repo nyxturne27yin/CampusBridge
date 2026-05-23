@@ -27,23 +27,35 @@
 
           <div class="card p-3 mb-2" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
 
+            <!-- HEADER -->
             <div class="d-flex justify-content-between align-items-start mb-2">
-              <h6 style="color: #ffffff; font-weight: 800;">{{ s.title }}</h6>
+
+              <h6 style="color: #ffffff; font-weight: 800; margin: 0;">
+                {{ s.title }}
+              </h6>
 
               <span class="badge" style="background: #12281a; border: 2px solid var(--spore-glow); color: var(--spore-glow);">
                 {{ s.status }}
               </span>
+
             </div>
 
-            <p style="color: #e3ffe1;">
+            <!-- DESCRIPTION -->
+            <p style="color: #e3ffe1; margin-bottom: 8px;">
               {{ s.description }}
             </p>
 
+            <!-- ATTACHMENT -->
             {% if s.attachment %}
-              <a href="{{ s.attachment.url }}" target="_blank">Download Attachment</a>
+              <div style="margin-bottom: 10px;">
+                <a href="{{ s.attachment.url }}" target="_blank">
+                  Download Attachment
+                </a>
+              </div>
             {% endif %}
 
-            <div class="mt-2">
+            <!-- ACTION BUTTONS (FIXED ALIGNMENT) -->
+            <div class="d-flex gap-2">
 
               <a href="{% url 'update_request' s.id %}" class="btn btn-sm btn-warning">
                 Edit
@@ -66,6 +78,7 @@
 
       </div>
 
+      <!-- APPOINTMENTS (UNCHANGED) -->
       <div class="card p-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35);">
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -83,22 +96,9 @@
             <div class="col-md-6">
               <div class="card p-3 h-100" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
 
-
-                <strong style="color: #ffffff; font-size: 1.05rem; text-shadow: 0 0 8px rgba(168,255,208,0.6);">
-                  {{ a.slot.date }}
-                </strong>
-
-                <br>
-
-                <span style="color: #e3ffe1; font-weight: 600;">
-                  Time: {{ a.slot.time_slot }}
-                </span>
-
-                <br>
-
-                <span style="color: #e3ffe1; font-weight: 600;">
-                  Status: {{ a.status }}
-                </span>
+                <strong>{{ a.slot.date }}</strong><br>
+                Time: {{ a.slot.time_slot }}<br>
+                Status: {{ a.status }}
 
               </div>
             </div>
@@ -112,6 +112,7 @@
 
     </div>
 
+    <!-- RIGHT SIDE (UNCHANGED) -->
     <div class="col-lg-4">
 
       <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92);">

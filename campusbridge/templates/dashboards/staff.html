@@ -15,6 +15,7 @@
     <div class="col-lg-8">
 
       <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
             🍃 My Support Requests
@@ -26,51 +27,68 @@
           <div class="card p-3 mb-2" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
             <div class="d-flex justify-content-between align-items-start mb-2">
               <h6 style="color: #ffffff; font-weight: 800; text-shadow: 0 2px 4px #000000; margin-bottom: 0;">{{ s.title }}</h6>
-              <span class="badge" style="background: #12281a; border: 2px solid var(--spore-glow); color: var(--spore-glow); font-weight: 700; text-shadow: none;">
+              <span class="badge" style="background: #12281a; border: 2px solid var(--spore-glow); color: var(--spore-glow); font-weight: 700;">
                 {{ s.status }}
               </span>
             </div>
-            <p style="color: #e3ffe1; font-size: 1rem; font-weight: 500; margin-bottom: 0; line-height: 1.5; text-shadow: 0 2px 4px rgba(0,0,0,0.9);">
+            <p style="color: #e3ffe1; font-size: 1rem; font-weight: 500; margin-bottom: 0;">
               {{ s.description }}
             </p>
           </div>
         {% empty %}
-          <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500; text-shadow: 0 1px 3px #000;">No requests active in the garden.</p>
+          <p class="text-center py-3 mb-0" style="color: #a6bfae;">
+            No requests active in the garden.
+          </p>
         {% endfor %}
+
       </div>
 
       <div class="card p-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+          <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800;">
             ⏳ Scheduled Appointments
           </h5>
-          <a href="{% url 'view_slots' %}" class="btn btn-soft btn-sm px-3" style="color: var(--spore-glow); border-color: var(--spore-glow); font-weight: 700;">
+          <a href="{% url 'view_slots' %}" class="btn btn-soft btn-sm px-3">
             Book Slot
           </a>
         </div>
 
         <div class="row g-2">
+
           {% for a in appointments %}
             <div class="col-md-6">
               <div class="card p-3 h-100" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <span class="badge rounded-circle p-2" style="background: rgba(168, 255, 208, 0.15); border: 1px solid var(--spore-glow);"><i class="bi bi-calendar3" style="color: var(--spore-glow);"></i></span>
-                  <span style="color: #ffffff; font-weight: 800; font-size: 1rem; text-shadow: 0 2px 4px #000000;">{{ a.slot.date }}</span>
+
+                <!-- 🔥 FIXED: BRIGHT DATE -->
+                <div style="color: #ffffff; font-weight: 900; font-size: 1.05rem;
+                            text-shadow: 0 0 10px rgba(168, 255, 208, 0.8); margin-bottom: 4px;">
+                  {{ a.slot.date }}
                 </div>
-                <div style="color: #e3ffe1; font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; text-shadow: 0 2px 4px #000000;">
+
+                <div style="color: #e3ffe1; font-weight: 600; font-size: 0.95rem; margin-bottom: 4px;">
                   <i class="bi bi-clock me-1 text-warning"></i> Time: {{ a.slot.time_slot }}
                 </div>
-                <div style="color: #e3ffe1; font-weight: 600; font-size: 0.95rem; text-shadow: 0 2px 4px #000000;">
-                  <i class="bi bi-info-circle me-1 text-info"></i> Status: <strong style="color: var(--spore-glow); font-weight: 800;">{{ a.status }}</strong>
+
+                <div style="color: #e3ffe1; font-weight: 600; font-size: 0.95rem;">
+                  <i class="bi bi-info-circle me-1 text-info"></i> Status:
+                  <strong style="color: var(--spore-glow); font-weight: 800;">
+                    {{ a.status }}
+                  </strong>
                 </div>
+
               </div>
             </div>
           {% empty %}
             <div class="col-12">
-              <p class="text-center py-3 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500; text-shadow: 0 1px 3px #000;">No appointments pinned to the ancient trees.</p>
+              <p class="text-center py-3 mb-0" style="color: #a6bfae;">
+                No appointments pinned to the ancient trees.
+              </p>
             </div>
           {% endfor %}
+
         </div>
+
       </div>
 
     </div>
@@ -78,7 +96,8 @@
     <div class="col-lg-4">
 
       <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
-        <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
+
+        <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800;">
           💬 Active Messages
         </h5>
 
@@ -86,39 +105,30 @@
           <div class="card p-3 mb-2 d-flex flex-row justify-content-between align-items-center" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
             <div class="d-flex align-items-center gap-2">
               <i class="bi bi-chat-right-text" style="color: var(--mystic-lavender);"></i>
-              <span style="color: #ffffff; font-weight: 700; font-size: 0.95rem; text-shadow: 0 2px 4px #000000;">Conversation #{{ c.id }}</span>
+              <span style="color: #ffffff; font-weight: 700;">Conversation #{{ c.id }}</span>
             </div>
-            <a href="{% url 'chat' c.id %}" class="btn btn-soft btn-sm px-3" style="color: var(--mystic-lavender); border-color: var(--mystic-lavender); font-weight: 700;">Open</a>
+            <a href="{% url 'chat' c.id %}" class="btn btn-soft btn-sm px-3">Open</a>
           </div>
         {% empty %}
-          <p class="text-center py-2 mb-0" style="color: #a6bfae; font-style: italic; font-weight: 500; text-shadow: 0 1px 3px #000;">Silence across the woods.</p>
+          <p class="text-center py-2 mb-0" style="color: #a6bfae;">
+            Silence across the woods.
+          </p>
         {% endfor %}
+
       </div>
 
-      <div class="card p-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
-        <h5 class="mb-3" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800; text-shadow: 0 2px 4px #000000;">
-          ✨ Quick Actions
-        </h5>
+      <div class="card p-4" style="background: rgba(10, 22, 15, 0.92);">
 
-        <div class="list-group gap-2">
+        <h5>✨ Quick Actions</h5>
 
-          <a href="{% url 'create_request' %}" class="list-group-item list-group-item-action p-3 rounded-3 text-start border-0 d-flex align-items-center justify-content-between"
-             style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(168, 255, 208, 0.15) !important; color: #ffffff; font-weight: 700; text-shadow: 0 2px 4px #000000; transition: all 0.2s ease;">
-            <span><i class="bi bi-plus-circle me-2" style="color: var(--spore-glow);"></i> File Support Request</span>
-            <i class="bi bi-chevron-right small opacity-50" style="color: var(--spore-glow);"></i>
-          </a>
+        <a href="{% url 'create_request' %}" class="btn btn-primary w-100 mt-2">
+          Create Support Request
+        </a>
 
-          <a href="#" class="list-group-item list-group-item-action p-3 rounded-3 text-start border-0 d-flex align-items-center justify-content-between"
-             style="background: rgba(0, 0, 0, 0.4); border: 2px solid rgba(168, 255, 208, 0.15) !important; color: #ffffff; font-weight: 700; text-shadow: 0 2px 4px #000000; transition: all 0.2s ease;">
-            <span><i class="bi bi-eye me-2" style="color: var(--fairy-pink);"></i> Track Submitted Forms</span>
-            <i class="bi bi-chevron-right small opacity-50" style="color: var(--fairy-pink);"></i>
-          </a>
+        <a href="{% url 'track_requests' %}" class="btn btn-secondary w-100 mt-2">
+          Track Requests
+        </a>
 
-          <a href="{% url 'conversation_list' %}" class="btn btn-primary w-100 mt-2 py-2.5 d-flex align-items-center justify-content-center gap-2" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-            <i class="bi bi-mailbox"></i> Enter Message Center
-          </a>
-
-        </div>
       </div>
 
     </div>
@@ -126,14 +136,5 @@
   </div>
 
 </div>
-
-<style>
-  .list-group-item:hover {
-    background: rgba(168, 255, 208, 0.1) !important;
-    border-color: var(--spore-glow) !important;
-    transform: translateX(4px);
-    box-shadow: 0 0 15px rgba(168, 255, 208, 0.2);
-  }
-</style>
 
 {% endblock %}
