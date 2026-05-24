@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
 
-"whitenoise.middleware.WhiteNoiseMiddleware",
+ "django.middleware.security.SecurityMiddleware",
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
@@ -150,6 +150,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    ".onrender.com",
+    "localhost",
+    "127.0.0.1"
+]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
