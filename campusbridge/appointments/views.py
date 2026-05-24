@@ -8,7 +8,7 @@ from django.http import HttpResponseForbidden
 from accounts.models import User
 from .models import CounselorAvailability, Notification, Appointment
 from support.models import AnonymousProfile
-
+from .utils import generate_slots_for_counselor
 
 def generate_slots_for_counselor(counselor):
     start_date = date.today()
@@ -67,17 +67,21 @@ def create_slot(request):
     return render(request, 'appointments/create_slot.html')
 
 
+from datetime import date
+from calendar import monthrange
+
 @login_required
 def view_slots(request):
 
-    counselors = User.objects.filter(role="counselor")
+    today = date.today()
 
-    for counselor in counselors:
-        generate_slots_for_counselor(counselor)
+
+    last_day = monthrange(today.year, today.month)[1]
+    month_end = date(today.year, today.month, last_day)
 
     slots = CounselorAvailability.objects.filter(
         is_booked=False,
-        date__gte=date.today()
+        date__range=[today, month_end]
     ).order_by("date", "time_slot")
 
     return render(request, "appointments/slots.html", {
@@ -125,28 +129,27 @@ def update_appointment(request, app_id, status):
     if request.user.role != "counselor":
         return HttpResponseForbidden("Only counselors can update")
 
-    if status not in ALLOWED_STATUS:
-        messages.error(request, "Invalid status")
-        return redirect('manage_appointments')
-
     app = get_object_or_404(
         Appointment,
         id=app_id,
         counselor=request.user
     )
 
-    app.status = status
-    app.save()
-
     if status == "approved":
+        app.status = "approved"
+        app.save()
+
         Conversation.objects.get_or_create(
             anonymous_profile=app.anonymous_profile,
             counselor=app.counselor
         )
 
+    elif status == "rejected":
+        app.delete()
+
     Notification.objects.create(
         user=app.anonymous_profile.user,
-        message=f"Your appointment is {status}"
+        message=f"Your appointment was {status}"
     )
 
     return redirect('manage_appointments')
@@ -182,3 +185,12 @@ def counselor_dashboard(request):
         "notifications": notifications,
     })
 
+
+@login_required
+def auto_generate_slots(request):
+    if request.user.role != "counselor":
+        return HttpResponseForbidden("Only counselors allowed")
+
+    generate_slots_for_counselor(request.user)
+
+    return redirect("view_slots")

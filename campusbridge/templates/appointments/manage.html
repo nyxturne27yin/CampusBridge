@@ -1,35 +1,134 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container mt-4">
+<style>
 
-    <h2 class="text-center mb-4" style="font-size:32px; font-weight:700;">
+.manage-wrapper {
+    max-width: 850px;
+    margin: auto;
+}
+
+.app-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--neon-glow);
+    transition: 0.3s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--fairy-pink);
+    box-shadow: 0 0 20px rgba(252,161,193,0.2);
+}
+
+.app-title {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.app-meta {
+    font-size: 14px;
+    color: var(--spore-glow);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffd36a;
+    border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+.action-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-approve {
+    background: linear-gradient(135deg, var(--spore-glow), var(--deep-moss));
+    color: #07120a;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid var(--spore-glow);
+    transition: 0.3s ease;
+}
+
+.btn-approve:hover {
+    background: #a8ffd0;
+    box-shadow: 0 0 10px rgba(168,255,208,0.4);
+}
+
+.btn-reject {
+    background: transparent;
+    color: #ff6b6b;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(255,107,107,0.5);
+    transition: 0.3s ease;
+}
+
+.btn-reject:hover {
+    background: rgba(255,107,107,0.1);
+    box-shadow: 0 0 10px rgba(255,107,107,0.3);
+}
+
+.page-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--spore-glow);
+    margin-bottom: 25px;
+}
+
+</style>
+
+<div class="manage-wrapper mt-4">
+
+    <h2 class="page-title">
         Manage Appointments
     </h2>
 
     {% for a in appointments %}
 
-    <div class="card mb-3 shadow-sm p-3" style="border-radius:12px;">
+    <div class="app-card">
 
-        <h5>
+        <div class="app-title">
             Student ID: {{ a.anonymous_profile.id }}
-        </h5>
+        </div>
 
-        <p>
+        <div class="app-meta">
             Date: <b>{{ a.slot.date }}</b><br>
             Time: <b>{{ a.slot.time_slot }}</b><br>
-            Status: <span class="badge bg-warning text-dark">{{ a.status }}</span>
-        </p>
 
-        <div class="d-flex gap-2">
+            Status:
+            <span class="status-badge">
+                {{ a.status }}
+            </span>
+        </div>
+
+        <div class="action-row">
 
             <a href="{% url 'update_appointment' a.id 'approved' %}"
-               class="btn btn-success">
+               class="btn-approve">
                 Approve
             </a>
 
             <a href="{% url 'update_appointment' a.id 'rejected' %}"
-               class="btn btn-danger">
+               class="btn-reject"
+               onclick="return confirm('This will permanently delete the appointment. Continue?');">
                 Reject
             </a>
 

@@ -4,192 +4,160 @@
 
 <style>
 
-    .slot-timeline-wrapper {
-        max-width: 780px;
-        margin: 0 auto;
-    }
+.slot-timeline-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+}
 
+.date-divider {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+    padding: 0 4px;
+}
 
-    .date-divider {
-        display: flex;
-        align-items: center;
-        margin-top: 2rem;
-        margin-bottom: 1.25rem;
-        padding: 0 4px;
-    }
+.date-badge-text {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-dust);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(227, 188, 118, 0.4);
+    white-space: nowrap;
+}
 
-    .date-badge-text {
-        font-family: 'Cinzel', serif;
-        color: var(--gold-dust);
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-shadow: 0 0 10px rgba(227, 188, 118, 0.4);
-        white-space: nowrap;
-    }
+.date-line {
+    flex-grow: 1;
+    height: 2px;
+    margin-left: 15px;
+    background: linear-gradient(90deg, rgba(168, 255, 208, 0.25), transparent);
+}
 
-    .date-line {
-        flex-grow: 1;
-        height: 2px;
-        margin-left: 15px;
-        background: linear-gradient(90deg, rgba(168, 255, 208, 0.25), transparent);
-    }
+.slot-row-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 18px;
+    padding: 16px 24px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: center;
+    box-shadow: var(--neon-glow);
+    backdrop-filter: blur(12px);
+    transition: all 0.35s ease;
+}
 
+.slot-row-card:hover {
+    border-color: var(--fairy-pink);
+    transform: translateX(5px);
+    box-shadow: 0 0 22px rgba(252, 161, 193, 0.25);
+}
 
-    .slot-row-card {
-        background: var(--card);
-        border: 2px solid var(--border);
-        border-radius: 18px;
-        padding: 16px 24px;
-        margin-bottom: 12px;
-        display: grid;
-        grid-template-columns: 1fr 1fr auto;
-        align-items: center;
-        box-shadow: var(--neon-glow);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+.btn-auto-generate {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(168,255,208,0.25), rgba(10,30,20,0.9));
+    color: var(--spore-glow);
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(168,255,208,0.5);
+    box-shadow: 0 0 15px rgba(168,255,208,0.15);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
 
-    .slot-row-card:hover {
-        background: var(--card-strong);
-        border-color: var(--fairy-pink);
-        transform: translateX(6px) scale(1.01);
-        box-shadow: 0 0 25px rgba(252, 161, 193, 0.2), 0 10px 30px rgba(0, 0, 0, 0.7);
-    }
+.btn-auto-generate:hover {
+    transform: scale(1.05);
+    border-color: var(--fairy-pink);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(252,161,193,0.3);
+}
 
+.slot-info-box {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--spore-glow);
+    font-size: 14px;
+    opacity: 0.9;
+}
 
-    .counselor-info {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+.btn-book-action {
+    padding: 7px 16px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--spore-glow), var(--deep-moss));
+    color: #07120a;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--spore-glow);
+    transition: 0.3s ease;
+}
 
-    .counselor-avatar-dot {
-        width: 8px;
-        height: 8px;
-        background-color: var(--spore-glow);
-        border-radius: 50%;
-        box-shadow: 0 0 10px var(--spore-glow);
-        transition: all 0.3s ease;
-    }
+.btn-book-action:hover {
+    background: var(--fairy-pink);
+    color: #fff;
+    border-color: var(--fairy-pink);
+    box-shadow: 0 0 12px rgba(252,161,193,0.4);
+}
 
-    .slot-row-card:hover .counselor-avatar-dot {
-        background-color: var(--fairy-pink);
-        box-shadow: 0 0 12px var(--fairy-pink);
-    }
+.counselor-name {
+    color: var(--text);
+    font-weight: 500;
+}
 
-    .counselor-name {
-        color: var(--text);
-        font-size: 15px;
-        font-weight: 500;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-    }
+.slot-time-display {
+    color: var(--spore-glow);
+    font-weight: 600;
+}
 
-    .slot-time-display {
-        color: var(--spore-glow);
-        font-size: 14.5px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-shadow: 0 0 6px rgba(168, 255, 208, 0.3);
-    }
-
-    .slot-row-card:hover .slot-time-display {
-        color: #ffffff;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    }
-
-
-    .btn-book-action {
-        background: linear-gradient(135deg, var(--deep-moss), var(--ancient-bark));
-        border: 2px solid var(--spore-glow);
-        color: var(--spore-glow) !important;
-        border-radius: 12px;
-        font-family: 'Cinzel', serif;
-        font-weight: 700;
-        font-size: 12px;
-        letter-spacing: 1px;
-        padding: 6px 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), var(--inner-bevel);
-        transition: all 0.3s ease;
-        text-shadow: 0 0 4px rgba(168, 255, 208, 0.4);
-    }
-
-    .slot-row-card:hover .btn-book-action {
-        color: #ffffff !important;
-        background: linear-gradient(135deg, var(--deep-moss), #3d2a27);
-        border-color: var(--fairy-pink);
-        box-shadow: 0 0 15px rgba(252, 161, 193, 0.5);
-        text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-    }
-
-
-    .mythic-empty-state {
-        max-width: 450px;
-        background: var(--card);
-        border: 2px dashed rgba(168, 255, 208, 0.25);
-        border-radius: 20px;
-        color: var(--muted);
-        font-size: 15px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        box-shadow: var(--neon-glow);
-    }
-
-
-    @media (max-width: 576px) {
-        .slot-row-card {
-            grid-template-columns: 1fr;
-            gap: 12px;
-            text-center: center;
-            padding: 20px;
-        }
-        .counselor-info {
-            justify-content: center;
-        }
-        .slot-time-display {
-            text-align: center;
-        }
-        .btn-book-action {
-            width: 100%;
-            margin-top: 4px;
-        }
-    }
 </style>
 
 <div class="container py-5">
 
-    <div class="text-center mb-5">
-        <h2 style="color: var(--spore-glow); text-shadow: 0 0 15px rgba(168, 255, 208, 0.4); font-size: 28px; letter-spacing: 2px;">
+    <div class="text-center mb-3">
+        <h2 style="color: var(--spore-glow); text-shadow: 0 0 15px rgba(168, 255, 208, 0.4); font-size: 28px;">
             Available Appointment Slots
         </h2>
     </div>
 
+    <div class="slot-info-box">
+        Total Slots Available: {{ slots|length }}
+    </div>
+
+    <div class="text-center mb-4">
+        <a href="{% url 'auto_generate_slots' %}" class="btn-auto-generate">
+             Generate Slots
+        </a>
+    </div>
+
     <div class="slot-timeline-wrapper">
+
         {% regroup slots by date as slot_days %}
 
         {% for day in slot_days %}
-        
+
         <div class="date-divider">
-            <span class="date-badge-text">
-                ✦ {{ day.grouper }}
-            </span>
+            <span class="date-badge-text">✦ {{ day.grouper }}</span>
             <div class="date-line"></div>
         </div>
 
         {% for slot in day.list %}
         <div class="slot-row-card">
-            
-            <div class="counselor-info">
-                <div class="counselor-avatar-dot"></div>
-                <div class="counselor-name">{{ slot.counselor.username }}</div>
+
+            <div class="counselor-name">
+                {{ slot.counselor.username }}
             </div>
 
             <div class="slot-time-display">
-                <i class="bi bi-clock-history me-1"></i> {{ slot.time_slot }}
+                <i class="bi bi-clock-history"></i> {{ slot.time_slot }}
             </div>
 
             <div>
-                <a href="{% url 'book_slot' slot.id %}" class="btn btn-book-action">
+                <a href="{% url 'book_slot' slot.id %}" class="btn-book-action">
                     Book Slot
                 </a>
             </div>
@@ -198,15 +166,15 @@
         {% endfor %}
 
         {% empty %}
-        
+
         <div class="mythic-empty-state text-center py-5 px-4 mx-auto mt-5">
-            <div class="mb-2" style="font-size: 24px;">🍂</div>
-            <p class="mb-0 italic-text">No magical appointment slots are currently open within the forest maps.</p>
+            <div style="font-size: 24px;">🍂</div>
+            <p>No appointment slots available.</p>
         </div>
 
         {% endfor %}
-    </div>
 
+    </div>
 </div>
 
 {% endblock %}

@@ -14,6 +14,6 @@ urlpatterns = [
     path('book/<int:slot_id>/', book_slot, name='book_slot'),
     path('manage/', manage_appointments, name='manage_appointments'),
     path('update/<int:app_id>/<str:status>/', update_appointment, name='update_appointment'),
-
+path('slots/auto/', views.auto_generate_slots, name='auto_generate_slots'),
 
 ]
