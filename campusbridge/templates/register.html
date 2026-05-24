@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+.form-control::placeholder{
+    color: #d8ffe8;
+    opacity: 1;
+    text-shadow:
+        0 0 4px rgba(168,255,208,0.7),
+        0 0 8px rgba(168,255,208,0.5),
+        0 0 14px rgba(168,255,208,0.35);
+}
+
+.form-control{
+    color: #ffffff;
+}
+</style>
+
 <div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
 
     <div class="glass-card p-4" style="width: 420px; border-radius: 12px;">
