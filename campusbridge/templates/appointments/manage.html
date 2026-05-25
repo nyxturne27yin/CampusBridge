@@ -2,50 +2,84 @@
 {% block content %}
 
 <style>
+.page-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #11052C !important;
+    letter-spacing: -0.5px;
+    margin-bottom: 25px;
+}
+
+.app-title {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #11052C !important;
+    margin-bottom: 8px;
+}
+
+.app-meta {
+    font-size: 1rem;
+    color: #2D2D3A !important;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+
+.app-meta b {
+    color: #000000 !important;
+    font-weight: 800;
+}
+
+.empty-text {
+    color: #49495e !important;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
 
 .manage-wrapper {
     max-width: 850px;
     margin: auto;
+    animation: smoothEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes smoothEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .app-card {
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    padding: 18px 22px;
-    margin-bottom: 14px;
-    box-shadow: var(--neon-glow);
-    transition: 0.3s ease;
+    background: #ffffff !important;
+    border: 2px solid #e1d8ff !important;
+    border-radius: 18px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(40, 40, 80, 0.04) !important;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .app-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--fairy-pink);
-    box-shadow: 0 0 20px rgba(252,161,193,0.2);
-}
-
-.app-title {
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 6px;
-}
-
-.app-meta {
-    font-size: 14px;
-    color: var(--spore-glow);
-    margin-bottom: 10px;
-    line-height: 1.6;
+    transform: translateY(-3px);
+    border-color: #7d61ff !important;
+    box-shadow: 0 12px 24px rgba(125, 97, 255, 0.15) !important;
 }
 
 .status-badge {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 700;
-    background: rgba(255, 193, 7, 0.15);
-    color: #ffd36a;
-    border: 1px solid rgba(255, 193, 7, 0.4);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    background: #e9e5ff !important;
+    border: 2px solid #7d61ff;
+    color: #11052C !important;
+    margin-left: 4px;
 }
 
 .action-row {
@@ -54,45 +88,38 @@
 }
 
 .btn-approve {
-    background: linear-gradient(135deg, var(--spore-glow), var(--deep-moss));
-    color: #07120a;
-    padding: 6px 14px;
-    border-radius: 10px;
-    font-weight: 700;
+    background: linear-gradient(135deg, #1fa37e, #178a6a);
+    color: #ffffff !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 800;
     text-decoration: none;
-    border: 1px solid var(--spore-glow);
-    transition: 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 12px rgba(31, 163, 126, 0.2);
+    transition: all 0.2s ease;
 }
 
 .btn-approve:hover {
-    background: #a8ffd0;
-    box-shadow: 0 0 10px rgba(168,255,208,0.4);
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(31, 163, 126, 0.35);
 }
 
 .btn-reject {
-    background: transparent;
-    color: #ff6b6b;
-    padding: 6px 14px;
-    border-radius: 10px;
-    font-weight: 700;
+    background: #ffd1d1;
+    color: #820e17 !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 800;
     text-decoration: none;
-    border: 1px solid rgba(255,107,107,0.5);
-    transition: 0.3s ease;
+    border: 2px solid #f27474;
+    transition: all 0.2s ease;
 }
 
 .btn-reject:hover {
-    background: rgba(255,107,107,0.1);
-    box-shadow: 0 0 10px rgba(255,107,107,0.3);
+    background: #fca1a1;
+    transform: translateY(-1px);
 }
-
-.page-title {
-    text-align: center;
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--spore-glow);
-    margin-bottom: 25px;
-}
-
 </style>
 
 <div class="manage-wrapper mt-4">
@@ -137,7 +164,7 @@
     </div>
 
     {% empty %}
-        <p class="text-center">No appointments found.</p>
+        <p class="text-center py-4 empty-text">No appointments found.</p>
     {% endfor %}
 
 </div>
