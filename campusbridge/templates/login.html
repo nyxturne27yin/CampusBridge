@@ -2,38 +2,79 @@
 {% block content %}
 
 <style>
-.form-control::placeholder{
-    color: #d8ffe8;
-    opacity: 1;
-    text-shadow:
-        0 0 4px rgba(168,255,208,0.7),
-        0 0 8px rgba(168,255,208,0.5),
-        0 0 14px rgba(168,255,208,0.35);
+.form-control::placeholder {
+    color: #49495e !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
 }
 
-.form-control{
-    color: #ffffff;
+.form-control::-webkit-input-placeholder { color: #49495e !important; opacity: 1 !important; font-weight: 700 !important; }
+.form-control::-moz-placeholder { color: #49495e !important; opacity: 1 !important; font-weight: 700 !important; }
+.form-control:-ms-input-placeholder { color: #49495e !important; opacity: 1 !important; font-weight: 700 !important; }
+
+.form-control {
+    color: #111111 !important;
+    font-weight: 700 !important;
+    border: 2px solid #b39eff !important;
+    background: #ffffff !important;
+}
+
+.form-control:focus {
+    border-color: #7d61ff !important;
+    box-shadow: 0 0 0 4px rgba(125, 97, 255, 0.25) !important;
+}
+
+.login-link {
+    color: #492ec4 !important;
+    text-decoration: underline;
+    font-weight: 800;
+    transition: color 0.2s ease;
+}
+
+.login-link:hover {
+    color: #210d7a !important;
+}
+
+.btn-primary-custom {
+    background: linear-gradient(135deg, #6c4eff, #4a8bff);
+    border: none;
+    color: #ffffff !important;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 20px rgba(108, 78, 255, 0.35);
+    transition: all 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(108, 78, 255, 0.45);
 }
 </style>
 
-<div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 75vh;">
 
-    <div class="soft-card p-4" style="width:380px;">
+    <div class="card p-4" style="width: 390px; background: linear-gradient(135deg, #ffffff, #f7f4ff) !important; border: 2px solid #b39eff; box-shadow: 0 20px 40px rgba(115, 100, 130, 0.12); border-radius: 24px;">
 
-        <h3 class="mb-3 text-center">Login</h3>
+        <div class="text-center mb-2" style="font-size: 2.2rem; filter: drop-shadow(0 4px 6px rgba(125, 97, 255, 0.4));">🔑</div>
+        <h2 class="mb-4 text-center" style="color: #11052C; font-weight: 800; letter-spacing: -0.5px;">Welcome Back</h2>
 
         <form method="POST">
             {% csrf_token %}
 
-            <input type="text" name="username" class="form-control mb-2" placeholder="Username">
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control py-2.5" placeholder="Username" required>
+            </div>
 
-            <input type="password" name="password" class="form-control mb-3" placeholder="Password">
+            <div class="mb-4">
+                <input type="password" name="password" class="form-control py-2.5" placeholder="Password" required>
+            </div>
 
-            <button class="btn btn-primary w-100">Login</button>
+            <button class="btn btn-primary-custom w-100 py-2.5 rounded-5">Login</button>
         </form>
 
-        <p class="text-center mt-3">
-            No account? <a href="/register/">Register</a>
+        <p class="text-center mt-4 mb-1" style="color: #111111; font-weight: 700; font-size: 0.95rem;">
+            Don't have an account? <a href="/register/" class="login-link">Register Here</a>
         </p>
 
     </div>

@@ -1,147 +1,257 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container mt-2">
+<style>
+/* --- CORE TEXT ACCESSIBILITY OVERRIDES --- */
+.dashboard-heading {
+    color: #11052C !important; /* High contrast ultra-dark purple */
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
 
-  <div class="d-flex align-items-center mb-4 gap-3">
-    <div style="font-size: 2rem; filter: drop-shadow(0 0 8px var(--spore-glow));"></div>
-    <h2 class="mb-0" style="font-family: 'Cinzel', serif; font-weight: 800; color: #f0fff7; text-shadow: 0 3px 6px #000000, 0 0 15px rgba(168, 255, 208, 0.5);">
-      Student Dashboard
-    </h2>
+.section-title {
+    color: #11052C !important; /* Deepest plum for structural headers */
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+/* Card body copy explicitly set to deep charcoal/pure black for flawless contrast */
+.card-body-text {
+    color: #111111 !important;
+    font-weight: 700 !important; /* Elevated weights to keep text crisp against pastel backgrounds */
+}
+
+.card-sub-text {
+    color: #2D2D3A !important;
+    font-weight: 700 !important;
+}
+
+.text-dark-custom {
+    color: #11052C !important;
+    font-weight: 800 !important;
+}
+
+/* --- LAYOUT & ANIMATIONS --- */
+.animate-entrance {
+    animation: smoothEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+@keyframes smoothEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- WORKSPACE CONTAINERS --- */
+.column-card {
+    background: linear-gradient(135deg, #ffffff, #f7f4ff) !important; /* Solidified pastels for text grounding */
+    border: 2px solid #b39eff !important; /* Highened border definition */
+    box-shadow: 0 20px 40px rgba(115, 100, 130, 0.12) !important;
+    border-radius: 24px !important;
+}
+
+.item-card {
+    background: #ffffff !important;
+    border: 2px solid #e1d8ff !important;
+    box-shadow: 0 4px 12px rgba(40, 40, 80, 0.04) !important;
+    border-radius: 18px !important;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.item-card:hover {
+    transform: translateY(-3px) !important;
+    border-color: #7d61ff !important;
+    box-shadow: 0 12px 24px rgba(125, 97, 255, 0.15) !important;
+}
+
+/* --- BADGES & BUTTONS --- */
+.status-badge {
+    background: #7d61ff !important;
+    color: #ffffff !important; /* Swapped to pure white text over rich purple base */
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 12px;
+}
+
+.action-link {
+    color: #492ec4 !important;
+    font-weight: 800;
+    text-decoration: underline;
+    transition: all 0.2s ease;
+}
+
+.action-link:hover {
+    color: #210d7a !important;
+}
+
+.btn-warning-custom {
+    background: #ffebad; /* Darkened fill for legible typography background */
+    color: #613b00 !important; /* Deep brown tone text */
+    border: 2px solid #e0a300;
+    font-weight: 800;
+    border-radius: 20px;
+    padding: 5px 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-warning-custom:hover {
+    background: #ffd65c;
+    transform: translateY(-1px);
+}
+
+.btn-danger-custom {
+    background: #ffd1d1;
+    color: #820e17 !important; /* Deeper crimson for visibility guidelines */
+    border: 2px solid #f27474;
+    font-weight: 800;
+    border-radius: 20px;
+    padding: 5px 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-danger-custom:hover {
+    background: #fca1a1;
+    transform: translateY(-1px);
+}
+
+.btn-secondary-custom {
+    background: #ffffff;
+    color: #11052C !important;
+    border: 2px solid #7d61ff;
+    font-weight: 800;
+    border-radius: 30px;
+    padding: 9px 24px;
+    box-shadow: 0 6px 16px rgba(40, 40, 80, 0.04);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+    transform: translateY(-2px);
+    background: #f4f0ff;
+    box-shadow: 0 10px 22px rgba(125, 97, 255, 0.15);
+}
+</style>
+
+<div class="container mt-4 animate-entrance">
+
+  <div class="d-flex align-items-center mb-4 gap-2">
+    <div style="font-size: 2.2rem; filter: drop-shadow(0 4px 6px rgba(125, 97, 255, 0.4));">🌱</div>
+    <h2 class="mb-0 dashboard-heading">Student Dashboard</h2>
   </div>
 
   <div class="row g-4">
 
     <div class="col-lg-8">
 
-      <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+      <div class="card p-4 mb-4 animate-entrance delay-1 column-card">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800;">
-            🍃 My Support Requests
-          </h5>
-          <a href="{% url 'create_request' %}" class="btn btn-primary btn-sm">New Request</a>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="mb-0 section-title">🌸 My Support Requests</h5>
+          <a href="{% url 'create_request' %}" class="btn btn-primary btn-sm px-4 fw-bold" style="background: linear-gradient(135deg, #6c4eff, #4a8bff); border: none; box-shadow: 0 6px 14px rgba(125, 97, 255, 0.35); font-weight: 800;">New Request</a>
         </div>
 
         {% for s in requests %}
+          <div class="card p-3 mb-3 item-card">
 
-          <div class="card p-3 mb-2" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
-
-            <!-- HEADER -->
             <div class="d-flex justify-content-between align-items-start mb-2">
-
-              <h6 style="color: #ffffff; font-weight: 800; margin: 0;">
-                {{ s.title }}
-              </h6>
-
-              <span class="badge" style="background: #12281a; border: 2px solid var(--spore-glow); color: var(--spore-glow);">
-                {{ s.status }}
-              </span>
-
+              <h6 class="text-dark-custom mb-0 style-title" style="font-size: 1.1rem;">{{ s.title }}</h6>
+              <span class="badge status-badge">{{ s.status }}</span>
             </div>
 
-            <!-- DESCRIPTION -->
-            <p style="color: #e3ffe1; margin-bottom: 8px;">
+            <p class="card-body-text mb-3" style="font-size: 1rem; line-height: 1.65;">
               {{ s.description }}
             </p>
 
-            <!-- ATTACHMENT -->
             {% if s.attachment %}
-              <div style="margin-bottom: 10px;">
-                <a href="{{ s.attachment.url }}" target="_blank">
-                  Download Attachment
+              <div class="mb-3">
+                <a href="{{ s.attachment.url }}" target="_blank" class="action-link small d-inline-flex align-items-center gap-1">
+                  <i class="bi bi-paperclip" style="font-weight: 900;"></i> Download Attachment
                 </a>
               </div>
             {% endif %}
 
-            <!-- ACTION BUTTONS (FIXED ALIGNMENT) -->
             <div class="d-flex gap-2">
-
-              <a href="{% url 'update_request' s.id %}" class="btn btn-sm btn-warning">
-                Edit
-              </a>
-
-              <a href="{% url 'delete_request' s.id %}" class="btn btn-sm btn-danger"
-                 onclick="return confirm('Are you sure you want to delete this request?');">
-                Delete
-              </a>
-
+              <a href="{% url 'update_request' s.id %}" class="btn btn-sm btn-warning-custom">Edit</a>
+              <a href="{% url 'delete_request' s.id %}" class="btn btn-sm btn-danger-custom" onclick="return confirm('Are you sure you want to delete this request?');">Delete</a>
             </div>
 
           </div>
-
         {% empty %}
-          <p class="text-center py-3 mb-0" style="color: #a6bfae;">
-            No requests active in the garden.
+          <p class="text-center py-4 mb-0 card-sub-text">
+            No support requests opened yet.
           </p>
         {% endfor %}
 
       </div>
 
-      <!-- APPOINTMENTS (UNCHANGED) -->
-      <div class="card p-4" style="background: rgba(10, 22, 15, 0.92); border-color: rgba(168, 255, 208, 0.35);">
+      <div class="card p-4 animate-entrance delay-2 column-card">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0" style="font-family: 'Cinzel', serif; color: var(--gold-dust); font-weight: 800;">
-            ⏳ Scheduled Appointments
-          </h5>
-          <a href="{% url 'view_slots' %}" class="btn btn-soft btn-sm px-3">
-            Book Slot
-          </a>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="mb-0 section-title">🗓️ Scheduled Appointments</h5>
+          <a href="{% url 'view_slots' %}" class="btn btn-sm px-4 fw-bold" style="background: linear-gradient(135deg, #24c299, #e05183); border: none; color: #ffffff !important; box-shadow: 0 6px 14px rgba(40, 40, 80, 0.15); font-weight: 800;">Book Slot</a>
         </div>
 
-        <div class="row g-2">
-
+        <div class="row g-3">
           {% for a in appointments %}
             <div class="col-md-6">
-              <div class="card p-3 h-100" style="background: rgba(0, 0, 0, 0.4); border-color: rgba(168, 255, 208, 0.2);">
-
-                <strong>{{ a.slot.date }}</strong><br>
-                Time: {{ a.slot.time_slot }}<br>
-                Status: {{ a.status }}
-
+              <div class="card p-3 h-100 item-card">
+                <div class="text-dark-custom mb-2" style="font-size: 1.15rem;">
+                  {{ a.slot.date }}
+                </div>
+                <div class="card-sub-text mb-2" style="font-size: 1rem;">
+                  Time: <span style="color: #000000; font-weight: 800;">{{ a.slot.time_slot }}</span>
+                </div>
+                <div class="card-sub-text" style="font-size: 1rem;">
+                  Status: <span class="badge rounded-pill px-3 py-1" style="background: #e9e5ff; border: 2px solid #7d61ff; color: #11052C !important; font-weight: 800;">{{ a.status }}</span>
+                </div>
               </div>
             </div>
           {% empty %}
-            <p>No appointments.</p>
+            <div class="col-12">
+              <p class="text-center py-3 mb-0 card-sub-text">No appointments scheduled.</p>
+            </div>
           {% endfor %}
-
         </div>
 
       </div>
 
     </div>
 
-    <!-- RIGHT SIDE (UNCHANGED) -->
     <div class="col-lg-4">
 
-      <div class="card p-4 mb-4" style="background: rgba(10, 22, 15, 0.92);">
-
-        <h5>💬 Active Messages</h5>
+      <div class="card p-4 mb-4 animate-entrance delay-2 column-card">
+        <h5 class="mb-3 section-title">💬 Active Messages</h5>
 
         {% for c in conversation %}
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span>Conversation #{{ c.id }}</span>
-            <a href="{% url 'chat' c.id %}" class="btn btn-sm btn-soft">Open</a>
+          <div class="d-flex justify-content-between align-items-center p-3 mb-2 rounded-3" style="background: #ffffff; border: 2px solid #c3b0ff; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+            <span class="text-dark-custom" style="font-size: 1rem;">Conversation #{{ c.id }}</span>
+            <a href="{% url 'chat' c.id %}" class="btn btn-sm fw-bold px-3 text-white" style="background: linear-gradient(135deg, #1fa37e, #cc3b70); border: none; border-radius: 20px; font-weight: 800;">Open</a>
           </div>
         {% empty %}
-          <p>Silence across the woods.</p>
+          <p class="mb-0 py-2 card-sub-text">Inbox is empty.</p>
         {% endfor %}
-
       </div>
 
-      <div class="card p-4" style="background: rgba(10, 22, 15, 0.92);">
+      <div class="card p-4 animate-entrance delay-3 column-card">
+        <h5 class="mb-3 section-title">✨ Quick Actions</h5>
 
-        <h5>✨ Quick Actions</h5>
-
-        <a href="{% url 'create_request' %}" class="btn btn-primary w-100 mt-2">
+        <a href="{% url 'create_request' %}" class="btn btn-primary w-100 py-2.5 mb-3 fw-bold" style="background: linear-gradient(135deg, #6c4eff, #4a8bff); border: none; box-shadow: 0 8px 20px rgba(125, 97, 255, 0.35); font-weight: 800;">
           Create Support Request
         </a>
 
-        <a href="{% url 'track_requests' %}" class="btn btn-secondary w-100 mt-2">
+        <a href="{% url 'track_requests' %}" class="btn btn-secondary-custom w-100 py-2.5">
           Track Requests
         </a>
-
       </div>
 
     </div>

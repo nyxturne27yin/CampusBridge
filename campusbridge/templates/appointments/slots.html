@@ -3,145 +3,176 @@
 {% block content %}
 
 <style>
-
 .slot-timeline-wrapper {
     max-width: 780px;
     margin: 0 auto;
+    animation: smoothEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes smoothEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .date-divider {
     display: flex;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 1.25rem;
     padding: 0 4px;
 }
 
 .date-badge-text {
-    font-family: 'Cinzel', serif;
-    color: var(--gold-dust);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(227, 188, 118, 0.4);
+    color: #201230;
+    font-size: 1.1rem;
+    font-weight: 800;
     white-space: nowrap;
+    background: #ffeef4;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px dashed #fcaecb;
+    display: inline-flex;
+    align-items: center;
 }
 
 .date-line {
     flex-grow: 1;
     height: 2px;
     margin-left: 15px;
-    background: linear-gradient(90deg, rgba(168, 255, 208, 0.25), transparent);
+    background: linear-gradient(90deg, #fcaecb, transparent);
 }
 
 .slot-row-card {
-    background: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 18px;
-    padding: 16px 24px;
-    margin-bottom: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(246, 243, 255, 0.95));
+    border: 1px solid #c3b0ff;
+    border-radius: 20px;
+    padding: 18px 24px;
+    margin-bottom: 14px;
     display: grid;
     grid-template-columns: 1fr 1fr auto;
     align-items: center;
-    box-shadow: var(--neon-glow);
-    backdrop-filter: blur(12px);
-    transition: all 0.35s ease;
+    box-shadow: 0 8px 20px rgba(115, 100, 130, 0.06);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .slot-row-card:hover {
-    border-color: var(--fairy-pink);
-    transform: translateX(5px);
-    box-shadow: 0 0 22px rgba(252, 161, 193, 0.25);
+    border-color: #fcaecb;
+    transform: scale(1.015) translateX(4px);
+    box-shadow: 0 12px 24px rgba(252, 174, 203, 0.2);
 }
 
 .btn-auto-generate {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 11px 20px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(168,255,208,0.25), rgba(10,30,20,0.9));
-    color: var(--spore-glow);
-    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #7d61ff, #5c9eff);
+    color: #ffffff !important;
+    font-weight: 800;
+    font-size: 15px;
     text-decoration: none;
-    border: 1px solid rgba(168,255,208,0.5);
-    box-shadow: 0 0 15px rgba(168,255,208,0.15);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: 0 6px 14px rgba(125, 97, 255, 0.35);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .btn-auto-generate:hover {
-    transform: scale(1.05);
-    border-color: var(--fairy-pink);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(252,161,193,0.3);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 10px 20px rgba(125, 97, 255, 0.45);
 }
 
 .slot-info-box {
     text-align: center;
-    margin-bottom: 10px;
-    color: var(--spore-glow);
-    font-size: 14px;
-    opacity: 0.9;
+    margin-bottom: 15px;
+    color: #201230;
+    font-size: 15px;
+    font-weight: 800;
+    background: #f3efff;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid #c3b0ff;
 }
 
 .btn-book-action {
-    padding: 7px 16px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--spore-glow), var(--deep-moss));
-    color: #07120a;
-    font-weight: 700;
-    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #7d61ff, #5c9eff);
+    color: #ffffff !important;
+    font-weight: 800;
+    font-size: 14px;
     text-decoration: none;
-    border: 1px solid var(--spore-glow);
-    transition: 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 12px rgba(125, 97, 255, 0.3);
+    transition: all 0.2s ease;
 }
 
 .btn-book-action:hover {
-    background: var(--fairy-pink);
-    color: #fff;
-    border-color: var(--fairy-pink);
-    box-shadow: 0 0 12px rgba(252,161,193,0.4);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #fcaecb, #7d61ff);
+    box-shadow: 0 6px 14px rgba(252, 174, 203, 0.45);
 }
 
 .counselor-name {
-    color: var(--text);
-    font-weight: 500;
+    color: #000000;
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 
 .slot-time-display {
-    color: var(--spore-glow);
-    font-weight: 600;
+    color: #201230;
+    font-weight: 800;
+    font-size: 15.5px;
 }
 
+.cute-empty-state {
+    background: #ffffff;
+    border: 1px dashed #c3b0ff;
+    border-radius: 24px;
+    color: #201230;
+    font-weight: 800;
+    max-width: 500px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.02);
+}
 </style>
 
-<div class="container py-5">
+<div class="container py-5 text-center">
 
-    <div class="text-center mb-3">
-        <h2 style="color: var(--spore-glow); text-shadow: 0 0 15px rgba(168, 255, 208, 0.4); font-size: 28px;">
-            Available Appointment Slots
+    <div class="d-flex align-items-center justify-content-center mb-2">
+        <h2 class="mb-0" style="color: #201230; font-weight: 800; letter-spacing: -0.5px; font-size: 30px;">
+            Available Slots
         </h2>
     </div>
 
-    <div class="slot-info-box">
-        Total Slots Available: {{ slots|length }}
+    <div class="mb-3">
+        <div class="slot-info-box">
+            Total Slots Available: {{ slots|length }}
+        </div>
     </div>
 
-    <div class="text-center mb-4">
+    <div class="mb-5">
         <a href="{% url 'auto_generate_slots' %}" class="btn-auto-generate">
-             Generate Slots
+           Generate Slots
         </a>
     </div>
 
-    <div class="slot-timeline-wrapper">
+    <div class="slot-timeline-wrapper text-start">
 
         {% regroup slots by date as slot_days %}
 
         {% for day in slot_days %}
 
         <div class="date-divider">
-            <span class="date-badge-text">✦ {{ day.grouper }}</span>
+            <span class="date-badge-text">{{ day.grouper }}</span>
             <div class="date-line"></div>
         </div>
 
@@ -153,10 +184,10 @@
             </div>
 
             <div class="slot-time-display">
-                <i class="bi bi-clock-history"></i> {{ slot.time_slot }}
+                <i class="bi bi-clock-fill me-1"></i> {{ slot.time_slot }}
             </div>
 
-            <div>
+            <div class="text-end">
                 <a href="{% url 'book_slot' slot.id %}" class="btn-book-action">
                     Book Slot
                 </a>
@@ -167,9 +198,8 @@
 
         {% empty %}
 
-        <div class="mythic-empty-state text-center py-5 px-4 mx-auto mt-5">
-            <div style="font-size: 24px;">🍂</div>
-            <p>No appointment slots available.</p>
+        <div class="cute-empty-state text-center py-5 px-4 mx-auto mt-5">
+            <p class="mb-0">No appointment slots available right now.</p>
         </div>
 
         {% endfor %}
