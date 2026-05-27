@@ -5,11 +5,11 @@
 
 <style>
     .chat-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(243, 239, 255, 0.85));
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(243,239,255,0.85));
         border: 1px solid #c3b0ff;
         border-radius: 24px;
         padding: 24px;
-        box-shadow: 0 20px 40px rgba(115, 100, 130, 0.12);
+        box-shadow: 0 20px 40px rgba(115,100,130,0.12);
         margin-bottom: 2rem;
     }
 
@@ -20,18 +20,17 @@
         padding: 14px 18px;
         border-radius: 18px;
         border: 1px solid #c3b0ff;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255,255,255,0.9);
         margin-bottom: 12px;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: all 0.3s ease;
         text-decoration: none;
         color: inherit;
     }
 
     .chat-item:hover {
-        background: #ffffff;
         border-color: #7d61ff;
         transform: translateX(4px);
-        box-shadow: 0 8px 20px rgba(125, 97, 255, 0.15);
+        box-shadow: 0 8px 20px rgba(125,97,255,0.15);
     }
 
     .chat-left {
@@ -45,15 +44,12 @@
         height: 48px;
         border-radius: 50%;
         background: linear-gradient(135deg, #7d61ff, #5c9eff);
-        border: none;
-        color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 800;
         font-size: 16px;
-        box-shadow: 0 4px 10px rgba(125, 97, 255, 0.3);
-        flex-shrink: 0;
+        color: white;
     }
 
     .chat-title {
@@ -65,24 +61,7 @@
     .chat-sub {
         font-size: 13.5px;
         color: #3a3a4a;
-        font-weight: 700;
-    }
-
-    .delete-btn-custom {
-        border: none;
-        background: #ffe5e5;
-        color: #bd2130 !important;
-        font-size: 16px;
-        padding: 8px 12px;
-        border-radius: 14px;
-        font-weight: 700;
-        transition: all 0.2s ease;
-    }
-
-    .delete-btn-custom:hover {
-        background: #fcc2c4;
-        color: #8c0615 !important;
-        transform: scale(1.05);
+        font-weight: 600;
     }
 
     .section-title {
@@ -93,13 +72,22 @@
         border-bottom: 1px solid #c3b0ff;
         padding-bottom: 8px;
     }
+
+    .delete-btn-custom {
+        border: none;
+        background: #ffe5e5;
+        color: #bd2130 !important;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-weight: 700;
+    }
 </style>
 
 <div class="container mt-4">
 
-    <div class="d-flex align-items-center mb-4 gap-2 justify-content-center justify-content-md-start">
-        <div style="font-size: 2rem; filter: drop-shadow(0 4px 6px rgba(195, 176, 255, 0.3));">🌱</div>
-        <h2 class="mb-0 text-center text-md-start" style="color: #201230; font-weight: 800; letter-spacing: -0.5px;">Support Chats</h2>
+    <div class="d-flex align-items-center mb-4 gap-2">
+        <div style="font-size:2rem;">🌱</div>
+        <h2 style="font-weight:800; color:#201230;">Support Chats</h2>
     </div>
 
     <div class="chat-card">
@@ -107,6 +95,7 @@
 
         {% for c in counselors %}
         <div class="chat-item">
+
             <div class="chat-left">
                 <div class="avatar">
                     {{ c.username|slice:":1"|upper }}
@@ -114,13 +103,16 @@
 
                 <div>
                     <div class="chat-title">{{ c.username }}</div>
-                    <div class="chat-sub">Available Counselor</div>
+                    <div class="chat-sub">Counselor</div>
                 </div>
             </div>
 
-            <a href="{% url 'start_conversation' c.id %}" class="btn btn-primary btn-sm px-4 fw-bold" style="background: linear-gradient(135deg, #7d61ff, #5c9eff); border: none; box-shadow: 0 6px 14px rgba(125, 97, 255, 0.35);">
+            <a href="{% url 'start_conversation' c.id %}"
+               class="btn btn-primary btn-sm px-4"
+               style="background: linear-gradient(135deg,#7d61ff,#5c9eff); border:none;">
                 Message
             </a>
+
         </div>
         {% endfor %}
     </div>
@@ -132,31 +124,45 @@
         <div class="chat-item">
 
             <a href="{% url 'chat' convo.id %}" class="chat-left text-decoration-none flex-grow-1">
-                <div class="avatar" style="background: linear-gradient(135deg, #49dcb1, #5c9eff);">
-                    {{ convo.anonymous_profile.anon_id|slice:":2"|upper }}
+
+                <div class="avatar" style="background: linear-gradient(135deg,#49dcb1,#5c9eff);">
+                    {% if request.user.role == "counselor" %}
+                        {{ convo.anonymous_profile.anon_id|slice:":2"|upper }}
+                    {% else %}
+                        {{ convo.counselor.username|slice:":1"|upper }}
+                    {% endif %}
                 </div>
 
                 <div>
                     <div class="chat-title">
-                        {{ convo.anonymous_profile.anon_id }}
+                        {% if request.user.role == "counselor" %}
+                            {{ convo.anonymous_profile.anon_id }}
+                        {% else %}
+                            {{ convo.counselor.username }}
+                        {% endif %}
                     </div>
+
                     <div class="chat-sub">
                         Tap to open conversation
                     </div>
                 </div>
+
             </a>
 
             <a href="{% url 'delete_conversation' convo.id %}"
                onclick="return confirm('Delete this chat?');"
-               class="delete-btn-custom text-decoration-none"
-               aria-label="Delete Conversation">
-                <i class="bi bi-trash3-fill"></i>
+               class="delete-btn-custom text-decoration-none">
+                🗑
             </a>
 
         </div>
+
         {% empty %}
-        <div class="chat-sub p-2 text-center text-md-start" style="font-weight: 700; color: #201230;">No conversations started yet.</div>
+        <div class="chat-sub text-center">
+            No conversations started yet.
+        </div>
         {% endfor %}
+
     </div>
 
 </div>

@@ -5,6 +5,8 @@ from support.models import AnonymousProfile
 from .models import Conversation, Message
 from accounts.models import User
 from django.http import HttpResponseForbidden
+from support.models import SupportRequest
+from appointments.models import Appointment
 
 # Create your views here.
 @login_required
@@ -42,24 +44,39 @@ def send_message(request, conversation_id):
     return redirect("chat", convo_id=convo.id)
 @login_required
 def conversation_list(request):
-    profile = request.user.anonymousprofile
 
     counselors = User.objects.filter(role="counselor")
 
-    conversations = Conversation.objects.filter(
-        anonymous_profile=profile
-    ).select_related("counselor")
+    role = request.user.role
 
-    return render(request, 'messaging/list.html', {
-        'counselors': counselors,
-        'conversations': conversations
+    if role == "counselor":
+
+        conversations = Conversation.objects.filter(
+            counselor=request.user
+        ).select_related("anonymous_profile", "counselor")
+
+
+    else:
+
+        profile = AnonymousProfile.objects.filter(user=request.user).first()
+
+        if not profile:
+            conversations = Conversation.objects.none()
+        else:
+            conversations = Conversation.objects.filter(
+                anonymous_profile=profile
+            ).select_related("anonymous_profile", "counselor")
+
+    return render(request, "messaging/list.html", {
+        "counselors": counselors,
+        "conversations": conversations
     })
 
 @login_required
 def start_conversation(request, counselor_id):
     counselor = get_object_or_404(User, id=counselor_id)
 
-    profile = request.user.anonymousprofile  # adjust if your relation differs
+    profile = request.user.anonymousprofile
 
     convo, created = Conversation.objects.get_or_create(
         anonymous_profile=profile,
@@ -79,9 +96,16 @@ def counselor_inbox(request):
 
 @login_required
 def student_inbox(request):
-    conversations = Conversation.objects.filter(student=request.user)
-    return render(request, "messaging/inbox.html", {
-        "conversations": conversations
+    profile = request.user.anonymousprofile
+
+    conversations = Conversation.objects.filter(
+        anonymous_profile=profile
+    ).select_related("counselor")
+
+    return render(request, "dashboard.html", {
+        "requests": SupportRequest.objects.filter(anonymous_profile=profile),
+        "appointments": Appointment.objects.filter(anonymous_profile=profile),
+        "conversation": conversations
     })
 
 

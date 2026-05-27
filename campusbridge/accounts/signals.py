@@ -1,11 +1,9 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth import get_user_model
+from accounts.models import User
 from support.models import AnonymousProfile
 
-User=get_user_model()
-
 @receiver(post_save, sender=User)
-def create_anonymous_profile(sender, instance, created, **kwargs):
-    if created:
-        AnonymousProfile.objects.create(user=instance)
+def create_anon_profile(sender, instance, created, **kwargs):
+    if created and instance.role == "student":
+        AnonymousProfile.objects.get_or_create(user=instance)
